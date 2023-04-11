@@ -1,0 +1,168 @@
+<Project>
+  <Name>Lab03-Sprint01</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>UMLDiagram</Name>
+    <Language>Java</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Aluno</Name>
+        <Access>Public</Access>
+        <Location left="769" top="125" />
+        <Size width="173" height="417" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private String nome</Member>
+        <Member type="Field">private String email</Member>
+        <Member type="Field">private int CPF</Member>
+        <Member type="Field">private int RG</Member>
+        <Member type="Field">private String endereco</Member>
+        <Member type="Field">private TInstituicao instituicao</Member>
+        <Member type="Field">private String curso</Member>
+        <Member type="Field">private List&lt;Moeda&gt; moedas</Member>
+        <Member type="Field">private List&lt;Transacao&gt; transacoes</Member>
+        <Member type="Field">private String login</Member>
+        <Member type="Field">private int senha</Member>
+        <Member type="Method">public void cadastrarAluno()</Member>
+        <Member type="Method">public void realizarLogin()</Member>
+        <Member type="Method">public void deletarAluno()</Member>
+        <Member type="Method">public void selecionarInstituicao()</Member>
+        <Member type="Method">public void trocarMoedas()</Member>
+        <Member type="Method">public void extrato()</Member>
+        <Member type="Method">private void verificarSaldo()</Member>
+        <Member type="Method">public void resgatarVantagem()</Member>
+        <Member type="Method">private void descontarMoedas()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Enum">
+        <Name>TInstituicao</Name>
+        <Access>Public</Access>
+        <Location left="519" top="125" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Value>UFMG</Value>
+        <Value>PUCMG</Value>
+        <Value>UniBH</Value>
+      </Entity>
+      <Entity type="Class">
+        <Name>Professor</Name>
+        <Access>Public</Access>
+        <Location left="1104" top="514" />
+        <Size width="162" height="281" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private String nome</Member>
+        <Member type="Field">private int CPF</Member>
+        <Member type="Field">private String departamento</Member>
+        <Member type="Field">private String Instituicao</Member>
+        <Member type="Field">private int saldoMoedas</Member>
+        <Member type="Field">private String login</Member>
+        <Member type="Field">private int senha</Member>
+        <Member type="Method">public void realizarLogin()</Member>
+        <Member type="Method">public void distribuirMoeda()</Member>
+        <Member type="Method">public void adicionarSaldo()</Member>
+        <Member type="Method">private void verificarSaldo()</Member>
+        <Member type="Method">public void extrato()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Moeda</Name>
+        <Access>Public</Access>
+        <Location left="1104" top="149" />
+        <Size width="162" height="196" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Aluno aluno</Member>
+        <Member type="Field">private String motivo</Member>
+        <Member type="Method">public void definirAluno()</Member>
+        <Member type="Method">public void definirMotivo()</Member>
+        <Member type="Method">public void notificarAluno()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Transacao</Name>
+        <Access>Public</Access>
+        <Location left="769" top="635" />
+        <Size width="173" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private int moedas</Member>
+        <Member type="Field">private List&lt;Vantagem&gt; vantagem</Member>
+        <Member type="Field">private Date data</Member>
+        <Member type="Field">private int codigo</Member>
+        <Member type="Method">public void adicionarTransacao()</Member>
+        <Member type="Method">public void gerarCodigo()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Vantagem</Name>
+        <Access>Public</Access>
+        <Location left="468" top="635" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Parceiro empresa</Member>
+        <Member type="Field">private int custoMoeda</Member>
+        <Member type="Field">private String descricao</Member>
+        <Member type="Field">private File foto</Member>
+        <Member type="Method">public void emailAluno()</Member>
+        <Member type="Method">public void emailParceiro()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Parceiro</Name>
+        <Access>Public</Access>
+        <Location left="468" top="939" />
+        <Size width="200" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private List&lt;Vantagem&gt; vantagem</Member>
+        <Member type="Field">private String login</Member>
+        <Member type="Field">private int senha</Member>
+        <Member type="Method">public void realizarLogin()</Member>
+        <Member type="Method">public void cadastrarVantagem()</Member>
+        <Member type="Method">public void conferirTroca()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Association" first="0" second="1">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Bidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="0" second="3">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Bidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="0" second="4">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Bidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="3" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Bidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="4" second="5">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Bidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="5" second="6">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Bidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>
