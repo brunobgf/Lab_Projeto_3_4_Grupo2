@@ -4,7 +4,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContentText from "@mui/material/DialogContentText";
 import * as S from "./styles";
 import Button from "../Button";
-import Card from '../Card/Card';
+import Card from '../Card';
 import TextField from "../TextField";
 
 const Modal = ({ modal, setModal }) => {
