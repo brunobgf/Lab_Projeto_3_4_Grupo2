@@ -2,23 +2,13 @@ import styled, { css } from 'styled-components'
 
 
 export const Wrapper = styled.div`
-${({ theme }) => css`
   width: 100%;
-  overflow-x: hidden;
-
   display: flex;
   margin-bottom: 5vh;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: ${theme.colors.cian};
-  padding: 20px 50px;
-
-  position: fixed;
-  top: 0;
-  z-index: 20;
-
-  `}
+  
 `
 
 export const LWrapper = styled.div`
@@ -30,7 +20,7 @@ align-items: center;
 `
 
 export const Title = styled.div`
-  font-size: 3rem;
+  font-size: 29px;
   font-weight: 500;
   color: black;
   display:flex;
@@ -40,25 +30,21 @@ export const Title = styled.div`
 
 export const Back = styled.button`
   z-index: 10;
-  color: white;
+  color: black;
   font-size: 35px;
   font-weight: 400;
   background: transparent;
   border: none;
+  border-radius: 100%;
   transaction: 0.5s;
   cursor: pointer;
   margin-right: 20px;
-  & :hover {
-    background: rgba(0,0,0,0.2);
+ 
   }
 `;
 
 export const Add = styled(Back)`
 align-items: center;
-font-size: 1.2rem;
-background-color: black;
-border-radius: 10px;
-padding: 10px;
 
 
 `;

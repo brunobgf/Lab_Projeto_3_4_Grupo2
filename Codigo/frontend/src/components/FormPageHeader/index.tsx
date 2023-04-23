@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import * as S from "./styles";
 import Router from "next/router";
+import { ArrowLeft } from 'styled-icons/feather';
 
 const PageHeader = ({ title, redirectAction, backAction }) => {
   const handleRedirectAction = (redirectUrl: string) => {
@@ -12,7 +13,7 @@ const PageHeader = ({ title, redirectAction, backAction }) => {
       <S.LWrapper>
         {!!backAction && (
           <S.Back onClick={() => handleRedirectAction(backAction)}>
-            {"<"}
+             <ArrowLeft size={40}/>
           </S.Back>
         )}
 
@@ -21,7 +22,7 @@ const PageHeader = ({ title, redirectAction, backAction }) => {
 
       {!!redirectAction && (
         <S.Add onClick={() => handleRedirectAction(redirectAction)}>
-          {"Novo +"}
+          {"+"}
         </S.Add>
       )}
     </S.Wrapper>

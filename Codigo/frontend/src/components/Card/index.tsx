@@ -6,12 +6,12 @@ import { Trash2 } from 'styled-icons/feather';
 
 // import { Delete } from "@styled-icons/fluentui-system-regular/Delete";
 
-const Card = ({ children, title, date, onEdit, onDelete }) => {
+const Card = ({ children, title, name, onEdit, onDelete }) => {
   return (
     <S.Wrapper>
       <S.LWrapper>
-        <S.Title>{title}</S.Title>
-        <S.Content> {date} </S.Content>
+        <S.TextWrapper>Nome:<S.Content style={{ paddingLeft: '10px' }}>{name}</S.Content></S.TextWrapper>
+ 
       </S.LWrapper>
 
       <S.ButtonWrapper>

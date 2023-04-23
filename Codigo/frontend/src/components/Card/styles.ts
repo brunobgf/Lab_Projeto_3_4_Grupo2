@@ -10,15 +10,17 @@ align-items: start;
 
 export const Wrapper = styled.div`
   max-width: 90vw;
-  background-color: ${theme.colors.secondaryBlue};
+  background-color: ${theme.colors.white};
   box-shadow: ${theme.shadows.black};
   border-radius: 5px;
-  margin-bottom: 12px;
-  border-left: 10px solid ${theme.colors.primaryGreen};
+  margin-bottom: 25px;
+  margin-right: 20px;
+  border-left: 10px solid ${theme.colors.darkRed};
   display:flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding: 10px;
   
 `;
 
@@ -30,45 +32,44 @@ export const ButtonWrapper = styled.div`
 
 
 
-export const Title = styled.div`
-  display: inline-block;
-  font-size: 18px;
+export const TextWrapper = styled.div`
+  display: flex;
+  flex-direction:row;
+  font-size: 16px;
   font-weight: 600;
-  padding: 8px 16px;
-  color: ${theme.colors.white};
+  padding: 8px 12px;
+  color: ${theme.colors.black};
 
   min-width: 10%;
-  max-width: 80%;
+  max-width: 100%;
 
 `;
 
 export const Content = styled.div`
-color: ${theme.colors.white};
-font-size: 18px;
+color: ${theme.colors.black};
+font-size: 16px;
 font-weight: 300;
-    padding: 6px 8px 12px 16px;
-    >button{
-        margin-top: 1rem;
-    }
+paddingLeft: 10px;
+
+
 `;
 
 export const Edit = styled.button`
 z-index: 10;
-color: white;
+color: blue;
 font-size: 25px;
-font-weight: 400;
+font-weight: 600;
 background: transparent;
 border: none;
 border-radius: 100%;
 transaction: 0.5s;
 cursor: pointer;
 margin-right: 20px;
-& :hover {
-  background: rgba(0,0,0,0.2);
-}
+
 `;
 
 export const Delete = styled(Edit)`
+color: red;
 
 
 `;

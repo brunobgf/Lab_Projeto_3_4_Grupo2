@@ -4,14 +4,12 @@ import * as S from "./styles";
 
 import theme from "@/styles/theme";
 
-const Layout = ({ children }: any) => {
+const FormLayout = ({ children }: any) => {
   return (
     <S.Wrapper>
-
-      {children}
-
+      <S.AppBox>{children}</S.AppBox>
     </S.Wrapper>
   );
 };
 
-export default Layout;
+export default FormLayout;

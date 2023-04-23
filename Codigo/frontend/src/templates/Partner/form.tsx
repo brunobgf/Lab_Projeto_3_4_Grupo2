@@ -4,7 +4,7 @@ import { VSpace } from "@/components/VSpace/styles";
 import { useFormTemplate } from "@/hooks/useForm";
 import { useRouter } from "next/router";
 import * as S from "./styles";
-import { useStudentData } from "@/services/api/student";
+import { usePartnerData } from "@/services/api/partner";
 import apiRoutes from "@/services/routes";
 import { useFetch } from "@/utils/reactQuery";
 import FormLayout from "@/components/FormLayout";
@@ -15,16 +15,13 @@ import FormPageHeader from "@/components/FormPageHeader";
 const defaultValues = {
  name: "",
  email: "",
- cpf: "",
- rg: "",
- institute: "",
- course: "",
+ cnpj: "",
  login: "",
  password: "",
 };
 
-const RegisterStudent = () => {
-  const { handleAdd, handleEdit } = useStudentData();
+const RegisterPartner = () => {
+  const { handleAdd, handleEdit } = usePartnerData();
   const { query } = useRouter();
 
   const { values, handleChange, setValues } = useFormTemplate(
@@ -33,7 +30,7 @@ const RegisterStudent = () => {
   );
 
   let { isLoading } = useFetch(
-    query.studentId ? apiRoutes.student.studentById + query.studentId : null,
+    query.partnerId ? apiRoutes.partner.partnerById + query.partnerId : null,
     {},
     {
       onSuccess: ({ data }: any) => {
@@ -43,15 +40,12 @@ const RegisterStudent = () => {
   );
 
   const testToast = () => {
-    query.studentId
+    query.partnerId
       ? handleEdit(
-        String(query.studentId),
+        String(query.partnerId),
         values.name,
         values.email,
-        values.cpf,
-        values.rg,
-        values.institute,
-        values.course,
+        values.cnpj,
         values.login,
         values.password,
 
@@ -59,10 +53,7 @@ const RegisterStudent = () => {
       : handleAdd(
         values.name,
         values.email,
-        values.cpf,
-        values.rg,
-        values.institute,
-        values.course,
+        values.cnpj,
         values.login,
         values.password,
 
@@ -72,50 +63,31 @@ const RegisterStudent = () => {
 
   return (
     <FormLayout>
-      <FormPageHeader title="Estudante" backAction={"/student"} />
+      <FormPageHeader title="Parceiro" backAction={"/partner"} />
 
       {isLoading ? (
         "carregando"
       ) : (
         <>
-          <S.TextFieldWrapper>
             <TextField
               label="Nome"
               value={values.name}
               onChange={handleChange("name")}
             />
+          <S.TextFieldWrapper>
+
           <TextField
             label="Email"
             value={values.email}
             onChange={handleChange("email")}
           />
+          <TextField
+            label="CNPJ"
+            value={values.cnpj}
+            onChange={handleChange("cnpj")}
+          />
           </S.TextFieldWrapper>
         
-          <S.TextFieldWrapper>
-          <TextField
-            label="CPF"
-            value={values.cpf}
-            onChange={handleChange("cpf")}
-          />
-          <TextField
-            label="RG"
-            value={values.rg}
-            onChange={handleChange("rg")}
-          />
-              </S.TextFieldWrapper>
-         
-          <S.TextFieldWrapper>
-            <TextField
-              label="Instituição"
-              value={values.institute}
-              onChange={handleChange("institute")}
-            />
-            <TextField
-              label="Curso"
-              value={values.course}
-              onChange={handleChange("course")}
-            />
-          </S.TextFieldWrapper>
           <S.TextFieldWrapper>
             <TextField
               label="Login"
@@ -138,4 +110,4 @@ const RegisterStudent = () => {
   );
 };
 
-export default RegisterStudent;
+export default RegisterPartner;

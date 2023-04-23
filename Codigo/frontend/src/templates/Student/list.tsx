@@ -1,67 +1,32 @@
-import Button from "@/components/Button";
-import FormModal from "@/components/FormModal";
+
 import Layout from "@/components/Layout";
-import Modal from "@/components/Modal";
 import PageHeader from "@/components/PageHeader";
-import { usePatientData } from "@/services/api/student";
+import { useStudentData } from "@/services/api/student";
 import { useFetch } from "@/utils/reactQuery";
 import Router from "next/router";
 import React, { useState } from "react";
-import RegisterPatient from "./form";
 import Card from "@/components/Card";
+import * as S from "./styles";
 
 const StudentList = () => {
-  const { data, isLoading } = useFetch("http://localhost:3000/patients");
-  const { handleDelete } = usePatientData();
+  const { data, isLoading } = useFetch("http://localhost:80/students");
+  const { handleDelete } = useStudentData();
 
-  const handleEditPatient = (patientId: string) => {
-    Router.push(`/patient/${patientId}/edit`);
+  const handleEditStudent = (studentId: string) => {
+    Router.push(`/student/${studentId}/edit`);
   };
 
-  const deletePatient = (patientId: string) => {
-    handleDelete(patientId);
+  const deleteStudent = (studentId: string) => {
+    handleDelete(studentId);
   };
 
-  const [modal, setModal] = useState({
-    open: false,
-    info: "",
-    title: "",
-    action: () => { },
-  });
+  const [students, setStudents] = useState([]);
 
-  
-  const [formModal, setFormModal] = useState({
-    open: false,
-    info: "",
-    title: "",
-    action: () => { },
-  });
-
-
-//   const actions = {
-//     onEdit: () => {
-//       setFormModal({
-//         open: true,
-//         info: row.id,
-//         title: "Editar Cliente",
-//         action: () => null
-//       })
-//     },
-//     onDelete: () => {
-//       setModal({
-//         open: true,
-//         info: row.name,
-//         action: () => handleDelete(row.id),
-//       })
-//     },
-//   }
-
-  const [clients, setClients] = useState([]);
   return (
     <Layout>
-      <PageHeader title="Pacientes" redirectAction={"/aluno/new"} />
-
-      {isLoading
+      <PageHeader title="Estudantes" redirectAction={"/student/new"} />
+      <S.Wrapper>
+      {/* {isLoading
         ? "Carregando..."
         : data?.data.map((patient: any) => (
             <Card
@@ -70,7 +35,23 @@ const StudentList = () => {
               onEdit={() => handleEditPatient(patient.id)}
               onDelete={() => deletePatient(patient.id)}
             />
-          ))}
+          ))} */}
+          <Card
+              name={'Aluno 1'}
+              onEdit={() => handleEditStudent(student.id)}
+              onDelete={() => handleDelete(student.id)}
+            />
+            <Card
+              name={'Aluno 2'}
+              onEdit={() => handleEditStudent(student.id)}
+              onDelete={() => handleDelete(student.id)}
+            />
+            <Card
+              name={'Aluno 3'}
+              onEdit={() => handleEditStudent(student.id)}
+              onDelete={() => handleDelete(student.id)}
+            />
+            </S.Wrapper>
     </Layout>
   );
 };

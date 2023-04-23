@@ -11,10 +11,10 @@ const inputModifiers = {
 export const Input = styled.input`
   ${({ theme, sufix }) => css`
     font-size: ${theme.font.sizes.xsmall};
-    color:  ${theme.colors.white};
+    color:  ${theme.colors.black};
     border-radius: 4px;
-    background-color: ${theme.colors.darkerBlue};
-    border: 1px solid ${theme.colors.secondaryBlue};
+    background-color: ${theme.colors.cian};
+    border: 1.5px solid ${theme.colors.primaryBlue};
     /* box-shadow: ${theme.shadows.black}; */
     width: 100%;
     transition: 1s;
@@ -30,7 +30,7 @@ export const Input = styled.input`
 
 export const Label = styled.label`
   ${({ theme }) => css`
-    color: ${theme.colors.white};
+    color: ${theme.colors.black};
     font-size: ${theme.font.sizes.xsmall};
     margin-bottom: 0.3rem;
     margin-left: 0.3rem;
@@ -53,16 +53,12 @@ export const InputWrapper = styled.div`
   margin-bottom: 1rem;
 `
 const wrapperModifiers = {
-  small: () => css`
+  large: () => css`
     ${Input} {
       padding: 0.4rem 1rem;
     }
   `,
-  large: () => css`
-    ${Input} {
-      padding: 0.7rem 1rem;
-    }
-  `,
+
   error: (theme) => css`
     ${Input} {
       border-color: ${theme.colors.red};

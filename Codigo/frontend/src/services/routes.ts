@@ -3,13 +3,13 @@ const apiRoutes = {
       login: `http://localhost:3000/auth/login`,
       reffresh: `http://localhost:3000/auth/refresh`
     },
-    patient: {
-      base: `http://localhost:3000/patients`,
-      patientById: `http://localhost:3000/patients?id=`,
+    student: {
+      base: `http://localhost:80/students`,
+      studentById: `http://localhost:80/students?id=`,
     },
-    user: {
-      base: `http://localhost:3000/user`,
-      userById: `http://localhost:3000/user?id=`,
+    partner: {
+      base: `http://localhost:80/partner`,
+      partnerById: `http://localhost:80/partner?id=`,
     },
   };
   

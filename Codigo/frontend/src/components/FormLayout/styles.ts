@@ -4,22 +4,22 @@ import media from "styled-media-query";
 
 export const Wrapper = styled.div`
   ${({ theme }) => css`
-    background-color: ${theme.colors.lightWhite};
+    background-color: ${theme.colors.grey};
     width: 100vw;
-    overflow-x: hidden;
-    overflow: auto;
-
     height: 100vh;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
   `}
 `;
 
 export const AppBox = styled.div`
   ${({ theme }) => css`
-    background-color: ${theme.colors.primaryBlue};
-    width: 90%;
+    background-color: ${theme.colors.whiteBg};
+    width: 80%;
     height: 90%;
     padding: 2rem;
+    overflow: auto;
   `}
 
   ${media.lessThan("medium")`  

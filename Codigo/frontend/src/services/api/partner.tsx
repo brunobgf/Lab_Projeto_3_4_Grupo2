@@ -3,33 +3,30 @@ import Router from "next/router";
 import toast from "react-hot-toast";
 import apiRoutes from "../routes";
 
-export const useStudentData = () => {
-  const studentMutation = useMultimethodMutation(apiRoutes.student.base);
-  const studentByIdMutation = useMultimethodMutation(
-    apiRoutes.student.studentById,
+export const usePartnerData = () => {
+  const partnerMutation = useMultimethodMutation(apiRoutes.partner.base);
+  const partnerByIdMutation = useMultimethodMutation(
+    apiRoutes.partner.partnerById,
     {},
-    apiRoutes.student.base
+    apiRoutes.partner.base
   );
 
   const handleAdd = (
     name:string,
     email:string,
-    cpf:string,
-    rg:string,
-    institute:string,
-    course:string,
+    cnpj:string,
     login:string,
     password:string,
   ) => {
-    studentMutation.mutate(
+    partnerMutation.mutate(
       {
-        data: { name, email, cpf, rg, institute, course, login, password },
+        data: { name, email, cnpj, login, password },
         method: "POST",
       },
       {
         onSuccess: ({ data }) => {
           toast.success("Cadastro realizado com sucesso.");
-          Router.push("/student");
+          Router.push("/partner");
         },
         onError: (err: any) => {
           toast.error("Erro no cadastro.");
@@ -39,21 +36,18 @@ export const useStudentData = () => {
   };
 
   const handleEdit = (
-    studentId: string,
+    partnerId: string,
     name:string,
     email:string,
-    cpf:string,
-    rg:string,
-    institute:string,
-    course:string,
+    cnpj:string,
     login:string,
     password:string,
   ) => {
-    studentByIdMutation.mutate(
+    partnerByIdMutation.mutate(
       {
-        data: { name, email, cpf, rg, institute, course, login, password  },
+        data: {  name, email, cnpj, login, password  },
         method: "PUT",
-        additionalQuery: studentId,
+        additionalQuery: partnerId,
       },
       {
         onSuccess: ({ data }) => {
@@ -66,12 +60,12 @@ export const useStudentData = () => {
     );
   };
 
-  const handleDelete = (studentId: string) => {
-    studentByIdMutation.mutate(
-      { method: "DELETE", additionalQuery: studentId },
+  const handleDelete = (partnerId: string) => {
+    partnerByIdMutation.mutate(
+      { method: "DELETE", additionalQuery: partnerId },
       {
         onSuccess: () => {
-          toast.success("Estudante excluido com sucesso");
+          toast.success("Parceiro excluido com sucesso");
         },
         onError: () => {
           toast.error("Erro");
