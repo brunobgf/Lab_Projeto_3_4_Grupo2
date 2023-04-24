@@ -8,7 +8,7 @@ public class App {
 
 	public static void main(String[] args) {
 		SpringApplication.run(App.class, args);
-		System.out.println("BACK-END RODANDO NA PORTA 8080");
+		System.out.println("successfully compiled");
 	}
 
 }
