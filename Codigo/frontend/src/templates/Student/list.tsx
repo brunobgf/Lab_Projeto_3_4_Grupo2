@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
@@ -9,7 +10,7 @@ import Card from "@/components/Card";
 import * as S from "./styles";
 
 const StudentList = () => {
-  const { data, isLoading } = useFetch("http://localhost:80/students");
+  const { data, isLoading } = useFetch("http://localhost:8080/student");
   const { handleDelete } = useStudentData();
 
   const handleEditStudent = (studentId: string) => {
@@ -24,33 +25,20 @@ const StudentList = () => {
 
   return (
     <Layout>
-      <PageHeader title="Estudantes" redirectAction={"/student/new"} />
+      <PageHeader title="Estudantes" redirectAction={"/student/new"} backAction={""}/>
       <S.Wrapper>
-      {/* {isLoading
+       {isLoading
         ? "Carregando..."
-        : data?.data.map((patient: any) => (
+        : data?.data.map((student: any) => (
             <Card
-            key={patient.id}
-              title={patient.name}
-              onEdit={() => handleEditPatient(patient.id)}
-              onDelete={() => deletePatient(patient.id)}
-            />
-          ))} */}
-          <Card
-              name={'Aluno 1'}
+              key={student.id}
+              children={""}
+              title={student.name}
+              name={student.name}
               onEdit={() => handleEditStudent(student.id)}
-              onDelete={() => handleDelete(student.id)}
+              onDelete={() => deleteStudent(student.id)}
             />
-            <Card
-              name={'Aluno 2'}
-              onEdit={() => handleEditStudent(student.id)}
-              onDelete={() => handleDelete(student.id)}
-            />
-            <Card
-              name={'Aluno 3'}
-              onEdit={() => handleEditStudent(student.id)}
-              onDelete={() => handleDelete(student.id)}
-            />
+          ))}
             </S.Wrapper>
     </Layout>
   );

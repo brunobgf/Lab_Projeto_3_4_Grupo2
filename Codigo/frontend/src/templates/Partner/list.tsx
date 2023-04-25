@@ -1,3 +1,5 @@
+/* eslint-disable react/no-children-prop */
+/* eslint-disable react/jsx-key */
 
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
@@ -23,12 +25,15 @@ const PartnerList = () => {
 
   return (
     <Layout>
-      <PageHeader title="Parceiros" redirectAction={"/partner/new"} />
+      <PageHeader title="Parceiros" redirectAction={"/partner/new"} backAction={""}/>
       <S.Wrapper>
       {isLoading
         ? "Carregando..."
         : data?.data.map((partner: any) => (
             <Card
+              key={partner.id}
+              children={""}
+              title={partner.name}
               name={partner.name}
               onEdit={() => handleEditPartner(partner.id)}
               onDelete={() => deletePartner(partner.id)}

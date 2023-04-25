@@ -2,11 +2,7 @@ import { api } from "@/services/services";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { pathToUrl } from "./routerCompile";
 
-export const useFetch = (
-  endpoint: string,
-  params?: object,
-  config?: any
-) => {
+export const useFetch = (endpoint: string, params?: object, config?: any) => {
   return useQuery([endpoint!, params], () => api.get(endpoint), {
     enabled: !!endpoint,
     keepPreviousData: true,
@@ -28,11 +24,7 @@ export const useMultimethodMutation = <T extends object>(
   const client = useQueryClient();
 
   return useMutation({
-    mutationFn: ({
-      data,
-      method,
-      additionalQuery,
-    }: MultimethodMutation<T>) => {
+    mutationFn: ({ data, method, additionalQuery }: MultimethodMutation<T>) => {
       const endpoint = endpointBase + (additionalQuery ?? "");
 
       if (method == "PUT") {

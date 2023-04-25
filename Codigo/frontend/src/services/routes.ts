@@ -4,12 +4,12 @@ const apiRoutes = {
       reffresh: `http://localhost:3000/auth/refresh`
     },
     student: {
-      base: `http://localhost:8080/students`,
-      studentById: `http://localhost:8080/students?id=`,
+      base: `http://localhost:8080/student`,
+      studentById: `http://localhost:8080/student/`,
     },
     partner: {
       base: `http://localhost:8080/partner`,
-      partnerById: `http://localhost:8080/partner?id=`,
+      partnerById: `http://localhost:8080/partner/`,
     },
   };
   
