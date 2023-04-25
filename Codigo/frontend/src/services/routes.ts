@@ -5,11 +5,11 @@ const apiRoutes = {
     },
     student: {
       base: `http://localhost:8080/student`,
-      studentById: `http://localhost:8080/student/id=`,
+      studentById: `http://localhost:8080/student/`,
     },
     partner: {
       base: `http://localhost:8080/partner`,
-      partnerById: `http://localhost:8080/partner/id=`,
+      partnerById: `http://localhost:8080/partner/`,
     },
   };
   

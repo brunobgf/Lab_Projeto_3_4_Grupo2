@@ -30,11 +30,11 @@ const RegisterPartner = () => {
   );
 
   let { isLoading } = useFetch(
-    query.partnerId ? apiRoutes.partner.partnerById + query.partnerId : null,
+    query.partnerId ? apiRoutes.partner.partnerById + query.partnerId : "",
     {},
     {
       onSuccess: ({ data }: any) => {
-        setValues({ ...data[0]});
+        setValues({ ...data});
       },
     }
   );

@@ -33,11 +33,11 @@ const RegisterStudent = () => {
   );
 
   let { isLoading } = useFetch(
-    query.studentId ? apiRoutes.student.studentById + query.studentId : null,
+    query.studentId ? apiRoutes.student.studentById + query.studentId : "",
     {},
     {
       onSuccess: ({ data }: any) => {
-        setValues({ ...data[0]});
+        setValues({ ...data});
       },
     }
   );
