@@ -7,7 +7,6 @@ export const useStudentData = () => {
   const studentMutation = useMultimethodMutation(apiRoutes.student.base);
   const studentByIdMutation = useMultimethodMutation(
     apiRoutes.student.studentById,
-    {},
     apiRoutes.student.base
   );
 

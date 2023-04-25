@@ -3,7 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { pathToUrl } from "./routerCompile";
 
 export const useFetch = (
-  endpoint: string | null,
+  endpoint: string,
   params?: object,
   config?: any
 ) => {
@@ -23,20 +23,16 @@ type MultimethodMutation<T> = {
 
 export const useMultimethodMutation = <T extends object>(
   endpointBase: string,
-  defaultParams: object = {},
   invalidateEndpoint?: string
 ) => {
   const client = useQueryClient();
-  const invalidateUrl = invalidateEndpoint;
 
   return useMutation({
     mutationFn: ({
       data,
-      params = {},
       method,
       additionalQuery,
     }: MultimethodMutation<T>) => {
-      // const endpoint = pathToUrl(endpointBase, { ...defaultParams, ...params });
       const endpoint = endpointBase + (additionalQuery ?? "");
 
       if (method == "PUT") {
@@ -59,7 +55,7 @@ export const useMultimethodMutation = <T extends object>(
     },
 
     onSuccess: () => {
-      !!invalidateUrl && client.invalidateQueries(invalidateUrl);
+      !!invalidateEndpoint && client.invalidateQueries(invalidateEndpoint);
     },
   });
 };

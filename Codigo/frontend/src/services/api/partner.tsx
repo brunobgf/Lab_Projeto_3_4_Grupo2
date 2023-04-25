@@ -7,7 +7,6 @@ export const usePartnerData = () => {
   const partnerMutation = useMultimethodMutation(apiRoutes.partner.base);
   const partnerByIdMutation = useMultimethodMutation(
     apiRoutes.partner.partnerById,
-    {},
     apiRoutes.partner.base
   );
 
