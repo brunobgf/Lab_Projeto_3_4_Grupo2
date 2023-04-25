@@ -9,7 +9,7 @@ import Card from "@/components/Card";
 import * as S from "./styles";
 
 const PartnerList = () => {
-  const { data, isLoading } = useFetch("http://localhost:80/partner");
+  const { data, isLoading } = useFetch("http://localhost:8080/partner");
   const { handleDelete } = usePartnerData();
   
 
@@ -25,31 +25,15 @@ const PartnerList = () => {
     <Layout>
       <PageHeader title="Parceiros" redirectAction={"/partner/new"} />
       <S.Wrapper>
-      {/* {isLoading
+      {isLoading
         ? "Carregando..."
-        : data?.data.map((patient: any) => (
+        : data?.data.map((partner: any) => (
             <Card
-            key={patient.id}
-              title={patient.name}
-              onEdit={() => handleEditPatient(patient.id)}
-              onDelete={() => deletePatient(patient.id)}
+              name={partner.name}
+              onEdit={() => handleEditPartner(partner.id)}
+              onDelete={() => deletePartner(partner.id)}
             />
-          ))} */}
-          <Card
-              name={'Parceiro 1'}
-              onEdit={() => handleEditPartner(student.id)}
-              onDelete={() => deletePartner(student.id)}
-            />
-            <Card
-              name={'Parceiro 2'}
-              onEdit={() => handleEditPartner(student.id)}
-              onDelete={() => deletePartner(student.id)}
-            />
-            <Card
-              name={'Parceiro 3'}
-              onEdit={() => handleEditPartner(student.id)}
-              onDelete={() => deletePartner(student.id)}
-            />
+          ))}
             </S.Wrapper>
     </Layout>
   );
