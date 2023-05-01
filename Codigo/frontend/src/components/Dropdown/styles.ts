@@ -200,3 +200,10 @@ export const DropdownItem = styled.div`
     }
   `}
 `
+export const Dropdown = styled.select`
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+`;
+
+export const Option = styled.option``;

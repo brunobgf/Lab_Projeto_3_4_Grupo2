@@ -2,7 +2,7 @@ import Button from "@/components/Button";
 import TextField from "@/components/TextField";
 import { VSpace } from "@/components/VSpace/styles";
 import { useFormTemplate } from "@/hooks/useForm";
-import { useRouter } from "next/router";
+import router, { useRouter } from "next/router";
 import * as S from "./styles";
 import { usePartnerData } from "@/services/api/partner";
 import apiRoutes from "@/services/routes";
@@ -63,7 +63,7 @@ const RegisterPartner = () => {
 
   return (
     <FormLayout>
-      <FormPageHeader title="Parceiro" backAction={"/partner"} />
+      <FormPageHeader title="Parceiro" backAction={() => router.back()} />
 
       {isLoading ? (
         "carregando"

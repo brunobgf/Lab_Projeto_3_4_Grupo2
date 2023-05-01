@@ -1,7 +1,7 @@
 const apiRoutes = {
     auth: {
-      login: `http://localhost:3000/auth/login`,
-      reffresh: `http://localhost:3000/auth/refresh`
+      login: `http://localhost:8080/auth/login`,
+      reffresh: `http://localhost:8080/auth/refresh`
     },
     student: {
       base: `http://localhost:8080/student`,

@@ -2,7 +2,7 @@ import Button from "@/components/Button";
 import TextField from "@/components/TextField";
 import { VSpace } from "@/components/VSpace/styles";
 import { useFormTemplate } from "@/hooks/useForm";
-import { useRouter } from "next/router";
+import router, { useRouter } from "next/router";
 import * as S from "./styles";
 import { useStudentData } from "@/services/api/student";
 import apiRoutes from "@/services/routes";
@@ -31,6 +31,9 @@ const RegisterStudent = () => {
     defaultValues,
     {}
   );
+
+  const router = useRouter();
+
 
   let { isLoading } = useFetch(
     query.studentId ? apiRoutes.student.studentById + query.studentId : "",
@@ -72,7 +75,7 @@ const RegisterStudent = () => {
 
   return (
     <FormLayout>
-      <FormPageHeader title="Estudante" backAction={"/student"} />
+      <FormPageHeader title="Estudante" backAction={() => router.back()} />
 
       {isLoading ? (
         "carregando"
