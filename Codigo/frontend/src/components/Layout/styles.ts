@@ -11,8 +11,18 @@ export const Wrapper = styled.div`
 
     height: 100vh;
 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  
+
   `}
 `;
+export const MainContent =  styled.div`
+flex: 3;
+overflow: auto;
+margin-left: 15vw; 
+  `;
 
 export const AppBox = styled.div`
   ${({ theme }) => css`
@@ -27,6 +37,20 @@ export const AppBox = styled.div`
     height: 100vh;
   
   `}
+`;
 
+export const SidebarContent = styled.div`
+
+  flex:2
+
+
+  @media only screen and (max-width: 768px) {
+    width: 30%;
+  }
+
+  @media only screen and (max-width: 480px) {
+    width: 40%;
+  }
 
 `;
+

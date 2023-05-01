@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.div`
 ${({ theme }) => css`
-  width: 100%;
+  width: 85vw;
   overflow-x: hidden;
 
   display: flex;
@@ -13,7 +13,6 @@ ${({ theme }) => css`
   align-items: center;
   background-color: ${theme.colors.cian};
   padding: 20px 50px;
-
   position: fixed;
   top: 0;
   z-index: 20;
@@ -59,6 +58,12 @@ font-size: 1.2rem;
 background-color: black;
 border-radius: 10px;
 padding: 10px;
+
+@media (max-width: 768px) {
+  width: 70px;
+  margin-left: 30px;
+}
+
 
 
 `;
