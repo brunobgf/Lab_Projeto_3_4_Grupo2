@@ -3,6 +3,6 @@ import Login from "@/templates/Login";
 
 const LoginPage = () => <Login />;
 
-LoginPage.authGuard = true;
+//LoginPage.authGuard = true;
 
 export default LoginPage;

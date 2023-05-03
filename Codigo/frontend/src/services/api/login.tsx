@@ -13,8 +13,15 @@ export const useAuthenticate = () => {
       {
         onSuccess: ({ data }) => {
           toast.success("Login realizado com sucesso");
-          window.sessionStorage.setItem("sessionToken", data.sessionToken);
-          Router.push("/dashboard");
+          //window.sessionStorage.setItem("sessionToken", data.sessionToken);
+          const { user_role } = data; // get the user's role from the response data
+          if (user_role === "Partner") {
+            Router.push("/partner-dashboard"); // redirect to partner dashboard if user is a Partner
+          } else if (user_role === "Student") {
+            Router.push("/student-dashboard"); // redirect to student dashboard if user is a Student
+          } else {
+            Router.push("/dashboard");
+          } // redirect to a default dashboard if the user's role is not recogniz
         },
         onError: () => {
           toast.error("Erro no login");
