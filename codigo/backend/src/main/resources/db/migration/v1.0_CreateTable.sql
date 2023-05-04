@@ -20,6 +20,7 @@ CREATE TABLE professor (
     cpf VARCHAR(15) NOT NULL,
     departament VARCHAR(30) NOT NULL,
     institution VARCHAR(30) NOT NULL,
+    coin_balance INT NOT NULL,
     login VARCHAR(20) NOT NULL unique,
     password VARCHAR(20) NOT NULL
 )
