@@ -70,8 +70,10 @@ margin-right: 20px;
 
 export const Delete = styled(Edit)`
 color: red;
+`;
 
-
+export const GiveCoins = styled(Edit)`
+color: #FFA400;
 `;
 
 export const CardContainer = styled.div`
@@ -82,7 +84,7 @@ export const CardContainer = styled.div`
   max-width: 39vw;
   padding: 10px;
   border-radius: 5px;
-  background-color: ${theme.colors.secondaryBlue};
+  background-color: ${theme.colors.secondaryGreen};
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
