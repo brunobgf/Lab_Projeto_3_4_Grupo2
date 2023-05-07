@@ -57,6 +57,8 @@ const RegisterStudent = () => {
         values.course,
         values.login,
         values.password,
+        values.coins,
+        values.motivation,
 
       )
       : handleAdd(
@@ -68,6 +70,8 @@ const RegisterStudent = () => {
         values.course,
         values.login,
         values.password,
+        values.coins,
+        values.motivation,
 
       );
   };

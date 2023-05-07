@@ -16,14 +16,14 @@ export const useAuthenticate = () => {
           //window.sessionStorage.setItem("sessionToken", data.sessionToken);
           const { user_role } = data; 
           switch (user_role) {
-            case "Partner":
-              Router.push("/partner-dashboard");
+            case "1":
+              Router.push("/partner/dashboard");
               break;
-            case "Professor": 
-            Router.push("/professor-dashboard");
+            case "2": 
+            Router.push("/professor/dashboard");
             break;
-            case "Student":
-              Router.push("/student-dashboard");
+            case "3":
+              Router.push("/student/dashboard");
               break;
             default:
               Router.push("/dashboard");

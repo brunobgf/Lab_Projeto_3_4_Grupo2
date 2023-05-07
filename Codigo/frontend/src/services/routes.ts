@@ -11,6 +11,10 @@ const apiRoutes = {
       base: `http://localhost:8080/partner`,
       partnerById: `http://localhost:8080/partner/`,
     },
+    professor: {
+      base: `http://localhost:8080/professor`,
+      professorById: `http://localhost:8080/professor/`,
+    },
   };
   
   export default apiRoutes;

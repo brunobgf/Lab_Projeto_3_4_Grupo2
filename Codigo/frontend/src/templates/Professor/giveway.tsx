@@ -13,21 +13,15 @@ import FormPageHeader from "@/components/FormPageHeader";
 
 
 const defaultValues = {
- name: "",
- email: "",
- cpf: "",
- rg: "",
- institute: "",
- course: "",
- login: "",
- password: "",
+ coins: "",
+ motivation: "",
 };
 
 const CoinGiveway = () => {
   const { handleAdd, handleEdit } = useStudentData();
   const { query } = useRouter();
 
-  const { values, handleChange, setValues } = useFormTemplate(
+  const { values, handleChange, setValues, handleAddCoins } = useFormTemplate(
     defaultValues,
     {}
   );
@@ -46,8 +40,7 @@ const CoinGiveway = () => {
   );
 
   const testToast = () => {
-    query.studentId
-      ? handleEdit(
+      handleEdit(
         String(query.studentId),
         values.name,
         values.email,
@@ -57,45 +50,30 @@ const CoinGiveway = () => {
         values.course,
         values.login,
         values.password,
-
+        values.coins,
+        values.motivation,
       )
-      : handleAdd(
-        values.name,
-        values.email,
-        values.cpf,
-        values.rg,
-        values.institute,
-        values.course,
-        values.login,
-        values.password,
-
-      );
+     
   };
 
 
   return (
     <FormLayout>
-      <FormPageHeader title="Enviar moedas" backAction={'/professor/dashboard'} />
+      <FormPageHeader title="Enviar moedas" backAction={'/professor/dashboard'} redirectAction={""} />
 
       {isLoading ? (
         "carregando"
       ) : (
         <>
-     
-          <TextField
-              label="Nome"
-              value={values.name}
-              onChange={handleChange("name")}
-            />
           <TextField
             label="Quantidade de moedas"
-            value={values.email}
-            onChange={handleChange("email")}
+            value= "0"
+            onChange={handleAddCoins("coins")}
           />
          <TextField
             label="Motivo de envio"
-            value={values.email}
-            onChange={handleChange("email")}
+            value={values.motivation}
+            onChange={handleChange("motivation")}
           />
      
 

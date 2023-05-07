@@ -25,7 +25,7 @@ const PartnerList = () => {
 
   return (
     <Layout>
-      <PageHeader title="Parceiros" redirectAction={"/partner/new"} backAction={""}/>
+      <PageHeader title="Parceiros" redirectAction={"/partner/new"} backAction={""} coins={""}/>
       <S.Wrapper>
       {isLoading
         ? "Carregando..."

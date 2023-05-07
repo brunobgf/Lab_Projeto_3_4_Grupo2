@@ -10,20 +10,12 @@ import Card from "@/components/Card";
 import * as S from "./styles";
 
 const ProfessorDashboard = () => {
-  const { data, isLoading } = useFetch("http://localhost:8080/student");
-  const { handleDelete } = useStudentData();
+  const { data: studentData, isLoading: isStudentLoading } = useFetch("http://localhost:8080/student");
+  const { data: professorData, isLoading: isProfessorLoading } = useFetch("http://localhost:8080/professor");
 
-  const handleEditStudent = (studentId: string) => {
-    Router.push(`/student/${studentId}/edit`);
-  };
 
   const handleGivewayCoinStudent = (studentId: string) => {
     Router.push(`/student/${studentId}/giveway`);
-  };
-
-
-  const deleteStudent = (studentId: string) => {
-    handleDelete(studentId);
   };
 
   const [students, setStudents] = useState([]);
@@ -44,20 +36,22 @@ const ProfessorDashboard = () => {
 
   return (
     <ProfessorLayout>
-      <PageHeader title="Dashboard" redirectAction={""} backAction={""} coins={"99999"}/>
+      <PageHeader title="Dashboard" redirectAction={""} backAction={""} coins={professorData?.data[0].coins}/>
       <S.Wrapper>
-       {/* {isLoading
+       {isStudentLoading
         ? "Carregando..."
-        : data?.data.map((student: any) => (
+        : studentData?.data.map((student: any) => (
             <Card
               key={student.id}
               children={""}
               title={student.name}
               name={student.name}
-              onGiveCoins={() => handleEditStudent(student.id)}
+              onGiveCoins={() => handleGivewayCoinStudent(student.id)}
 
             />
-          ))} */}
+          ))}
+
+            {/* MOCK VERSION */}
 
             <Card
               key={""}

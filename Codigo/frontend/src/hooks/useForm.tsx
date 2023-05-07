@@ -31,6 +31,18 @@ export function useFormTemplate(
     setValues({ ...values, [prop]: newVal });
   };
 
+  const handleAddCoins = (prop: any) => (event: any) => {
+    let newVal;
+
+    if (event?.target != undefined) {
+      newVal = event.target.value;
+    } else {
+      newVal = event;
+    }
+
+    setValues({ ...values, coins: values.coins + newVal });
+  };
+
   const setError = (prop: string, error: string) => {
     setErrors((prev: any) => ({
       ...prev,
@@ -83,6 +95,7 @@ export function useFormTemplate(
     setErrors,
     formValidate,
     handleChange,
+    handleAddCoins,
     formEditId,
     setError,
     isEdit,
