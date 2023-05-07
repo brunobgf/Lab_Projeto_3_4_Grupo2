@@ -70,8 +70,10 @@ margin-right: 20px;
 
 export const Delete = styled(Edit)`
 color: red;
+`;
 
-
+export const GiveCoins = styled(Edit)`
+color: #FFA400;
 `;
 
 export const CardContainer = styled.div`
@@ -79,10 +81,10 @@ export const CardContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 39vw;
+  max-width: 28vw;
   padding: 10px;
   border-radius: 5px;
-  background-color: ${theme.colors.secondaryBlue};
+  background-color: ${theme.colors.white};
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
@@ -107,7 +109,7 @@ export const DashboardCardTitle = styled.div`
   font-size: 18px;
   font-weight: 600;
   padding: 8px 16px;
-  color: ${theme.colors.white};
+  color: ${theme.colors.black};
 
   min-width: 10%;
   max-width: 70%;

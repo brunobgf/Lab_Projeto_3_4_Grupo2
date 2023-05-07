@@ -9,7 +9,7 @@ const Layout = ({ children }: any) => {
   return (
     <S.Wrapper>
  
-   <Sidebar showLinks={true} showProfessorLinks={true} /> 
+   <Sidebar showProfessorLinks={true} /> 
       <S.MainContent>{children}</S.MainContent>
 
     </S.Wrapper>

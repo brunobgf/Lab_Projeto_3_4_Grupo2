@@ -37,10 +37,6 @@ const Login = () => {
         onChange={handleChange("password")}
       />
       <Button onClick={login}>Entrar</Button>
-      <VSpace height={16}></VSpace>
-      <RedirectButton onClick={'/student/new'}>Nova conta(Sou aluno)</RedirectButton>
-      <VSpace height={16}></VSpace>
-      <RedirectButton onClick={'/partner/new'}>Nova conta(Sou empresa)</RedirectButton>
 
     </FormLayout>
   );

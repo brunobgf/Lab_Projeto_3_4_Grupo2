@@ -19,6 +19,9 @@ export const useAuthenticate = () => {
             case "Partner":
               Router.push("/partner-dashboard");
               break;
+            case "Professor": 
+            Router.push("/professor-dashboard");
+            break;
             case "Student":
               Router.push("/student-dashboard");
               break;

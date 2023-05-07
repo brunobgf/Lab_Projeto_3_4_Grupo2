@@ -66,4 +66,25 @@ padding: 10px;
 
 
 
+
+`;
+
+export const Coins = styled(Back) `
+
+    color:  #FFA400;
+    align-items: center;
+    font-size: 1.2rem;
+    background-color: black;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    @media (max-width: 768px) {
+      width: 70px;
+      margin-left: 30px;
+    }
+
+
 `;
