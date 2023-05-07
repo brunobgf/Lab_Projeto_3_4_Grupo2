@@ -1,6 +1,6 @@
 /* eslint-disable react/no-children-prop */
 
-import ProfessorLayout from "@/components/Layout/ProfessorLayout";
+import StudentLayout from "@/components/Layout/StudentLayout";
 import PageHeader from "@/components/PageHeader";
 import { useStudentData } from "@/services/api/student";
 import { useFetch } from "@/utils/reactQuery";
@@ -8,8 +8,9 @@ import Router from "next/router";
 import React, { useState } from "react";
 import Card from "@/components/Card";
 import * as S from "./styles";
+import IconCard from "@/components/Card/IconCard";
 
-const ProfessorDashboard = () => {
+const StudentDashboard = () => {
   const { data, isLoading } = useFetch("http://localhost:8080/student");
   const { handleDelete } = useStudentData();
 
@@ -43,34 +44,28 @@ const ProfessorDashboard = () => {
   // }, []);
 
   return (
-    <ProfessorLayout>
+    <StudentLayout>
       <PageHeader title="Dashboard" redirectAction={""} backAction={""} coins={"99999"}/>
       <S.Wrapper>
-       {/* {isLoading
-        ? "Carregando..."
-        : data?.data.map((student: any) => (
-            <Card
-              key={student.id}
-              children={""}
-              title={student.name}
-              name={student.name}
-              onGiveCoins={() => handleEditStudent(student.id)}
 
-            />
-          ))} */}
+      <S.CardWrapper>
+        <IconCard
+          title="Benefício 1"
+          onClick=''
+          icon=""
+        ></IconCard>
 
-            <Card
-              key={""}
-              children={""}
-              title={"teste"}
-              name={"teste"}
-              onGiveCoins={() => handleGivewayCoinStudent("")}
+        <IconCard
+          title="Benefício 2"
+          onClick=""
+          icon=""
+        ></IconCard>
+      </S.CardWrapper>
 
-            />
-            </S.Wrapper>
-    </ProfessorLayout>
+      </S.Wrapper>
+    </StudentLayout>
   );
 };
 
-export default ProfessorDashboard;
+export default StudentDashboard;
 

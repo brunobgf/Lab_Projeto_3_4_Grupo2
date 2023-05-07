@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../Button";
 import * as S from "./styles";
 import Router from "next/router";
-import { CoinStack } from '@styled-icons/boxicons-solid/CoinStack'
+import { HandCoin } from '@styled-icons/remix-line/HandCoin'
 
 // import { Delete } from "@styled-icons/fluentui-system-regular/Delete";
 
@@ -19,7 +19,7 @@ const IconCard = ({ children, onClick, icon, title, showCoinIcon }) => {
 
         {showCoinIcon &&
          <S.GiveCoins>
-            <CoinStack size={50} />
+            <HandCoin size={50} />
          </S.GiveCoins>
         }
 

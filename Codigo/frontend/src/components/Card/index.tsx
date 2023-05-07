@@ -3,7 +3,7 @@ import Button from "../Button";
 import * as S from "./styles";
 import { Edit3} from 'styled-icons/feather';
 import { Trash2 } from 'styled-icons/feather';
-import { CoinStack } from '@styled-icons/boxicons-solid/CoinStack'
+import { HandCoin } from '@styled-icons/remix-line/HandCoin'
 
 // import { Delete } from "@styled-icons/fluentui-system-regular/Delete";
 
@@ -16,7 +16,7 @@ const Card = ({ children, title, name, onEdit, onDelete, onGiveCoins}) => {
       </S.LWrapper>
 
       <S.ButtonWrapper>
-        {!!onGiveCoins && <S.GiveCoins onClick={onGiveCoins}><CoinStack size={30} /></S.GiveCoins>}
+        {!!onGiveCoins && <S.GiveCoins onClick={onGiveCoins}><HandCoin size={30} /></S.GiveCoins>}
         {!!onEdit && <S.Edit onClick={onEdit}>  <Edit3 size={30} /> </S.Edit>}
         {!!onDelete && <S.Delete onClick={onDelete}><Trash2 size={30} /></S.Delete>}
       </S.ButtonWrapper>

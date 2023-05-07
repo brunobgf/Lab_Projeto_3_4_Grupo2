@@ -15,13 +15,14 @@ const links = [
 
   const professorLinks = [
     { href: "/professor/dashboard", label: "Dashboard", icon: <PeopleFill size={30}/>,},
-    { href: "/professor/student", label: "Estudantes", icon: <PeopleFill size={30}/>,},
-
+  ];
+  const studentLinks = [
+    { href: "/student/dashboard", label: "Dashboard", icon: <PeopleFill size={30}/>,},
   ];
 
   const Link = dynamic(() => import("next/link"), { ssr: false });
 
-const Sidebar = ({showLinks, showProfessorLinks}) => {
+const Sidebar = ({showLinks, showProfessorLinks, showStudentLinks}) => {
     return (
       <S.SidebarWrapper>
         <S.SidebarHeader>SGM</S.SidebarHeader>
@@ -41,6 +42,16 @@ const Sidebar = ({showLinks, showProfessorLinks}) => {
               <S.SidebarLink>
                 {professorLink.icon}
                 <span className="link-label">{professorLink.label}</span>
+              </S.SidebarLink>
+            </Link>
+          ))}
+
+          {showStudentLinks  &&
+          studentLinks.map((studentLink) => (
+            <Link href={studentLink.href} key={studentLink.label}>
+              <S.SidebarLink>
+                {studentLink.icon}
+                <span className="link-label">{studentLink.label}</span>
               </S.SidebarLink>
             </Link>
           ))}

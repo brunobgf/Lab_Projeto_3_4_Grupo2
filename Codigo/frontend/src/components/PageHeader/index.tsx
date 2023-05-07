@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import * as S from "./styles";
 import Router from "next/router";
+import { CoinStack } from '@styled-icons/boxicons-solid/CoinStack'
 
-const PageHeader = ({ title, redirectAction, backAction }) => {
+const PageHeader = ({ title, redirectAction, backAction, coins }) => {
   const handleRedirectAction = (redirectUrl: string) => {
     Router.push(redirectUrl);
   };
@@ -23,6 +24,10 @@ const PageHeader = ({ title, redirectAction, backAction }) => {
         <S.Add onClick={() => handleRedirectAction(redirectAction)}>
           {"Novo +"}
         </S.Add>
+      )}
+
+      {coins && (
+        <S.Coins><CoinStack size={25}/>{`${coins}`}</S.Coins>
       )}
     </S.Wrapper>
   );

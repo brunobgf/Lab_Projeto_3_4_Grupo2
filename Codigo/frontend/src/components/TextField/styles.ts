@@ -27,6 +27,25 @@ export const Input = styled.input`
     ${sufix && inputModifiers.sufix(sufix)}
   `}
 `
+export const TextArea = styled.textarea`
+  ${({ theme, sufix }) => css`
+    font-size: ${theme.font.sizes.xsmall};
+    color:  ${theme.colors.black};
+    border-radius: 4px;
+    background-color: ${theme.colors.cian};
+    border: 1.5px solid ${theme.colors.primaryBlue};
+    /* box-shadow: ${theme.shadows.black}; */
+    width: 100%;
+    transition: 1s;
+
+    &:focus {
+      outline: none;
+      box-shadow: ${theme.shadows.blue};
+    }
+
+    ${sufix && inputModifiers.sufix(sufix)}
+  `}
+`
 
 export const Label = styled.label`
   ${({ theme }) => css`
