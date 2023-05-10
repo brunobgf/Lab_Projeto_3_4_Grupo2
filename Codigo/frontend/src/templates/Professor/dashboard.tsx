@@ -20,11 +20,11 @@ const ProfessorDashboard = () => {
 
   const [students, setStudents] = useState([]);
 
-  const hasCoins = () => professorData?.data.coin_balance !== undefined;
+  const hasCoins = () => professorData?.data.coinBalance != undefined;
 
   return (
     <ProfessorLayout>
-      <PageHeader title="Dashboard" redirectAction={""} backAction={""} coins={hasCoins() ? professorData?.data.coin_balance: "0"}/>
+      <PageHeader title="Dashboard" redirectAction={""} backAction={""} coins={hasCoins() ? professorData?.data.coinBalance: "0"}/>
       <S.Wrapper>
        {isStudentLoading
         ? "Carregando..."
@@ -40,17 +40,6 @@ const ProfessorDashboard = () => {
 
             />
           ))}
-
-            {/* MOCK VERSION */}
-
-            <Card
-              key={""}
-              children={""}
-              title={"teste"}
-              name={"teste"}
-              onGiveCoins={() => handleGivewayCoinStudent("")}
-
-            />
             </S.Wrapper>
     </ProfessorLayout>
   );

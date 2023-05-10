@@ -11,6 +11,7 @@ import apiRoutes from "@/services/routes";
 import { useFetch } from "@/utils/reactQuery";
 import FormLayout from "@/components/FormLayout";
 import FormPageHeader from "@/components/FormPageHeader";
+import Router from "next/router";
 
 
 
@@ -21,7 +22,7 @@ const defaultValues = {
 
 const CoinGiveway = () => {
   const { handleAdd, handleEdit } = useStudentData();
-  const { handleEditProfessor, handleAddCoin} = useProfessorData();
+  const {handleAddCoin} = useProfessorData();
 
   const { query } = useRouter();
 
@@ -69,17 +70,8 @@ const CoinGiveway = () => {
         values.coins,
         values.motivation,
       )
-      handleEditProfessor(   
-      String(query.studentId),
-      values.name,
-      values.email,
-      values.cpf,
-      values.login,
-      values.password,
-      values.coin_balance,
-      values.departament,
-      values.institution
-      ) 
+      Router.reload()
+      Router.push("/professor/dashboard")   
   };
 
 

@@ -26,7 +26,7 @@ public class Professor {
     @Column(name = "institution")
     private String institution;
 
-    @Column(name = "coin_balance")
+    @Column(name = "coinBalance")
     private double coinBalance;
 
     @Column(name = "login")

@@ -26,7 +26,7 @@ export const useProfessorData = () => {
       {
         onSuccess: ({ data }) => {
           toast.success("Cadastro realizado com sucesso.");
-          Router.push("/professor");
+          Router.push("/professor/dashboard");
         },
         onError: (err: any) => {
           toast.error("Erro no cadastro.");
@@ -35,61 +35,6 @@ export const useProfessorData = () => {
     );
 
   }
-
-  const handleAddProfessor = (
-    name: string,
-    email: string,
-    cpf: string,
-    login: string,
-    password: string,
-    coin_balance: string,
-    departament: string,
-    institution: string
-  ) => {
-    professorMutation.mutate(
-      {
-        data: { name, email, cpf, login, password, coin_balance, departament, institution },
-        method: "POST",
-      },
-      {
-        onSuccess: ({ data }) => {
-          toast.success("Cadastro realizado com sucesso.");
-          Router.push("/professor");
-        },
-        onError: (err: any) => {
-          toast.error("Erro no cadastro.");
-        },
-      }
-    );
-  };
-
-  const handleEditProfessor = (
-    professorId: string,
-    name: string,
-    email: string,
-    cpf: string,
-    login: string,
-    password: string,
-    coin_balance: string,
-    departament: string,
-    institution: string
-  ) => {
-    professorByIdMutation.mutate(
-      {
-        data: { name, email, cpf, login, password, coin_balance, departament, institution },
-        method: "PUT",
-        additionalQuery: professorId,
-      },
-      {
-        onSuccess: ({ data }) => {
-          toast.success("Atualização realizada com sucesso.");
-        },
-        onError: (err: any) => {
-          toast.error("Erro ao atualizar.");
-        },
-      }
-    );
-  };
 
   const handleDeleteProfessor = (professorId: string) => {
     professorByIdMutation.mutate(
@@ -107,5 +52,5 @@ export const useProfessorData = () => {
 
   const handleReadProfessor = () => { };
 
-  return { handleAddProfessor, handleEditProfessor, handleDeleteProfessor, handleReadProfessor, handleAddCoin};
+  return {handleDeleteProfessor, handleReadProfessor, handleAddCoin};
 };
