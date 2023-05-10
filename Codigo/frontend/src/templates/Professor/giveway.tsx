@@ -5,6 +5,8 @@ import { useFormTemplate } from "@/hooks/useForm";
 import router, { useRouter } from "next/router";
 import * as S from "./styles";
 import { useStudentData } from "@/services/api/student";
+import { useProfessorData } from "@/services/api/professor";
+
 import apiRoutes from "@/services/routes";
 import { useFetch } from "@/utils/reactQuery";
 import FormLayout from "@/components/FormLayout";
@@ -19,6 +21,8 @@ const defaultValues = {
 
 const CoinGiveway = () => {
   const { handleAdd, handleEdit } = useStudentData();
+  const { handleEditProfessor } = useProfessorData();
+
   const { query } = useRouter();
 
   const { values, handleChange, setValues, handleAddCoins } = useFormTemplate(
@@ -39,7 +43,13 @@ const CoinGiveway = () => {
     }
   );
 
+  const { data: professorData, isLoading: isProfessorLoading } = useFetch("http://localhost:8080/professor");
+  
+  const professorCoins = professorData?.data[0].coins;
+
   const testToast = () => {
+    const coinsGivenToStudent = values.coins;
+    const updatedProfessorCoins = professorCoins - coinsGivenToStudent;
       handleEdit(
         String(query.studentId),
         values.name,
@@ -53,7 +63,15 @@ const CoinGiveway = () => {
         values.coins,
         values.motivation,
       )
-     
+      handleEditProfessor(   
+      String(query.studentId),
+      values.name,
+      values.email,
+      values.cpf,
+      values.login,
+      values.password,
+      updatedProfessorCoins.toString(),
+      ) 
   };
 
 
@@ -67,16 +85,13 @@ const CoinGiveway = () => {
         <>
           <TextField
             label="Quantidade de moedas"
-            value= "0"
             onChange={handleAddCoins("coins")}
           />
          <TextField
             label="Motivo de envio"
-            value={values.motivation}
             onChange={handleChange("motivation")}
           />
      
-
           <VSpace height={30} />
           <Button onClick={testToast}>Salvar</Button>
         </>

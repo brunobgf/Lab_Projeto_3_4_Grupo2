@@ -21,22 +21,15 @@ const ProfessorDashboard = () => {
   const [students, setStudents] = useState([]);
 
 
-  // const [coins, setCoins] = useState(0);
 
-  // useEffect(() => {
+  const hasCoins = () => professorData?.data[0]?.coins !== undefined;
 
-  //   const fetchCoins = async () => {
-  //     const response = await fetch("/api/coins");
-  //     const data = await response.json();
-  //     setCoins(data.coins);
-  //   };
+  
 
-  //   fetchCoins();
-  // }, []);
 
   return (
     <ProfessorLayout>
-      <PageHeader title="Dashboard" redirectAction={""} backAction={""} coins={professorData?.data[0].coins}/>
+      <PageHeader title="Dashboard" redirectAction={""} backAction={""} coins={hasCoins() ? professorData?.data[0].coins.toString() : "0"}/>
       <S.Wrapper>
        {isStudentLoading
         ? "Carregando..."
@@ -47,6 +40,8 @@ const ProfessorDashboard = () => {
               title={student.name}
               name={student.name}
               onGiveCoins={() => handleGivewayCoinStudent(student.id)}
+              onDelete={""}
+              onEdit={""}
 
             />
           ))}

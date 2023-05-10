@@ -14,38 +14,18 @@ const StudentDashboard = () => {
   const { data, isLoading } = useFetch("http://localhost:8080/student");
   const { handleDelete } = useStudentData();
 
-  const handleEditStudent = (studentId: string) => {
-    Router.push(`/student/${studentId}/edit`);
-  };
-
-  const handleGivewayCoinStudent = (studentId: string) => {
-    Router.push(`/student/${studentId}/giveway`);
-  };
-
-
   const deleteStudent = (studentId: string) => {
     handleDelete(studentId);
   };
 
   const [students, setStudents] = useState([]);
 
+  const hasCoins = () => data?.data[0]?.coins !== undefined;
 
-  // const [coins, setCoins] = useState(0);
-
-  // useEffect(() => {
-
-  //   const fetchCoins = async () => {
-  //     const response = await fetch("/api/coins");
-  //     const data = await response.json();
-  //     setCoins(data.coins);
-  //   };
-
-  //   fetchCoins();
-  // }, []);
 
   return (
     <StudentLayout>
-      <PageHeader title="Dashboard" redirectAction={""} backAction={""} coins={"99999"}/>
+      <PageHeader title="Dashboard" redirectAction={""} backAction={""} coins={hasCoins() ? data?.data[0].coins.toString() : "0"}/>
       <S.Wrapper>
 
       <S.CardWrapper>

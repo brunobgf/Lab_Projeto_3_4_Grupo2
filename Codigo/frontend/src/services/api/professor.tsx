@@ -3,14 +3,14 @@ import Router from "next/router";
 import toast from "react-hot-toast";
 import apiRoutes from "../routes";
 
-export const usePartnerData = () => {
-  const partnerMutation = useMultimethodMutation(apiRoutes.partner.base);
-  const partnerByIdMutation = useMultimethodMutation(
-    apiRoutes.partner.partnerById,
-    apiRoutes.partner.base
+export const useProfessorData = () => {
+  const professorMutation = useMultimethodMutation(apiRoutes.professor.base);
+  const professorByIdMutation = useMultimethodMutation(
+    apiRoutes.professor.professorById,
+    apiRoutes.professor.base
   );
 
-  const handleAdd = (
+  const handleAddProfessor = (
     name:string,
     email:string,
     cpf:string,
@@ -18,7 +18,7 @@ export const usePartnerData = () => {
     password:string,
     coins: string,
   ) => {
-    partnerMutation.mutate(
+    professorMutation.mutate(
       {
         data: { name, email, cpf, login, password, coins },
         method: "POST",
@@ -26,7 +26,7 @@ export const usePartnerData = () => {
       {
         onSuccess: ({ data }) => {
           toast.success("Cadastro realizado com sucesso.");
-          Router.push("/partner");
+          Router.push("/professor");
         },
         onError: (err: any) => {
           toast.error("Erro no cadastro.");
@@ -35,8 +35,8 @@ export const usePartnerData = () => {
     );
   };
 
-  const handleEdit = (
-    partnerId: string,
+  const handleEditProfessor = (
+    professorId: string,
     name:string,
     email:string,
     cpf:string,
@@ -44,11 +44,11 @@ export const usePartnerData = () => {
     password:string,
     coins: string, 
   ) => {
-    partnerByIdMutation.mutate(
+    professorByIdMutation.mutate(
       {
         data: {  name, email, cpf, login, password, coins  },
         method: "PUT",
-        additionalQuery: partnerId,
+        additionalQuery: professorId,
       },
       {
         onSuccess: ({ data }) => {
@@ -61,12 +61,12 @@ export const usePartnerData = () => {
     );
   };
 
-  const handleDelete = (partnerId: string) => {
-    partnerByIdMutation.mutate(
-      { method: "DELETE", additionalQuery: partnerId },
+  const handleDeleteProfessor = (professorId: string) => {
+    professorByIdMutation.mutate(
+      { method: "DELETE", additionalQuery: professorId },
       {
         onSuccess: () => {
-          toast.success("Parceiro excluido com sucesso");
+          toast.success("Professor excluido com sucesso");
         },
         onError: () => {
           toast.error("Erro");
@@ -75,7 +75,7 @@ export const usePartnerData = () => {
     );
   };
 
-  const handleRead = () => {};
+  const handleReadProfessor = () => {};
 
-  return { handleAdd, handleEdit, handleDelete, handleRead };
+  return { handleAddProfessor, handleEditProfessor, handleDeleteProfessor, handleReadProfessor };
 };
