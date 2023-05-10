@@ -11,7 +11,7 @@ const Card = ({ children, title, name, onEdit, onDelete, onGiveCoins}) => {
   return (
     <S.Wrapper>
       <S.LWrapper>
-        <S.TextWrapper>Nome:<S.Content style={{ paddingLeft: '10px' }}>{name}</S.Content></S.TextWrapper>
+        <S.TextWrapper><S.Content style={{ paddingLeft: '10px' }}>{name}</S.Content></S.TextWrapper>
  
       </S.LWrapper>
 

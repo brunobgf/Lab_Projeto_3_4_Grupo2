@@ -12,6 +12,7 @@ import IconCard from "@/components/Card/IconCard";
 
 const StudentDashboard = () => {
   const { data: coinData, isLoading } = useFetch("http://localhost:8080/coin/byStudent/1");
+  const { data: professorData, isLoading: isProfessorLoading } = useFetch("http://localhost:8080/professor/1");
   const { handleDelete } = useStudentData();
 
   const deleteStudent = (studentId: string) => {
@@ -23,7 +24,7 @@ const StudentDashboard = () => {
   let coins = 0;
 
     coinData?.data.map((coin: any) => (
-      coins =+ coin.amount))
+      coins = coins + coin.amount))
 
   console.log(coinData?.data);
 
@@ -32,6 +33,19 @@ const StudentDashboard = () => {
     <StudentLayout>
       <PageHeader title="Dashboard" redirectAction={""} backAction={""} coins={coins}/>
       <S.Wrapper>
+
+      {coinData?.data.map((coin: any) => (
+            <Card
+              key={coin.id}
+              children={""}
+              title={coin.id}
+              name={"+ " + coin.amount + " moedas" + ". Motivo:  " + coin.motivation}
+              onGiveCoins={""}
+              onDelete={""}
+              onEdit={""}
+
+            />
+          ))}
 
       <S.CardWrapper>
         <IconCard

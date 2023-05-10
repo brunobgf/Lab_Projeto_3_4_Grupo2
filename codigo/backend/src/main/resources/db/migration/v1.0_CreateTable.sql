@@ -4,6 +4,7 @@ CREATE TABLE coin (
     id_professor INT NOT NULL,
     motivation VARCHAR(50) NOT NULL,
     amount DECIMAL,
+    created_at datetime not null default current_timestamp
 
     CONSTRAINT FK_for_student_coin_id FOREIGN KEY (id_student) REFERENCES student(id),
     CONSTRAINT FK_for_professor_coin_id FOREIGN KEY (id_professor) REFERENCES professor(id)

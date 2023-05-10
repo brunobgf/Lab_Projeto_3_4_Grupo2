@@ -1,5 +1,7 @@
 package project.model;
 
+import java.sql.Date;
+
 import javax.persistence.*;
 import lombok.Data;
 import lombok.ToString;
@@ -26,4 +28,6 @@ public class Coin {
     @Column(name = "amount")
     private double amount;
 
+    @Column(name = "created_at")
+    private Date created_at;
 }
