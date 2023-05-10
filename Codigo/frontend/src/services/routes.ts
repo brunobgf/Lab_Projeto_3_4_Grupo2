@@ -15,6 +15,9 @@ const apiRoutes = {
       base: `http://localhost:8080/professor`,
       professorById: `http://localhost:8080/professor/`,
     },
+    coin: {
+      base: `http://localhost:8080/coin`
+    },
   };
   
   export default apiRoutes;

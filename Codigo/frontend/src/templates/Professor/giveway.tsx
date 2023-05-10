@@ -21,7 +21,7 @@ const defaultValues = {
 
 const CoinGiveway = () => {
   const { handleAdd, handleEdit } = useStudentData();
-  const { handleEditProfessor } = useProfessorData();
+  const { handleEditProfessor, handleAddCoin} = useProfessorData();
 
   const { query } = useRouter();
 
@@ -43,13 +43,19 @@ const CoinGiveway = () => {
     }
   );
 
-  const { data: professorData, isLoading: isProfessorLoading } = useFetch("http://localhost:8080/professor");
+  const { data: professorData, isLoading: isProfessorLoading } = useFetch("http://localhost:8080/professor/1");
   
-  const professorCoins = professorData?.data[0].coins;
+  const professorCoins = professorData?.data.coin_balance;
 
   const testToast = () => {
-    const coinsGivenToStudent = values.coins;
-    const updatedProfessorCoins = professorCoins - coinsGivenToStudent;
+
+    handleAddCoin(
+      String(query.studentId),
+      values.id,
+      values.motivation,
+      values.coins
+    )
+
       handleEdit(
         String(query.studentId),
         values.name,
@@ -70,7 +76,9 @@ const CoinGiveway = () => {
       values.cpf,
       values.login,
       values.password,
-      updatedProfessorCoins.toString(),
+      values.coin_balance,
+      values.departament,
+      values.institution
       ) 
   };
 

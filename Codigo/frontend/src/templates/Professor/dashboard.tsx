@@ -11,7 +11,7 @@ import * as S from "./styles";
 
 const ProfessorDashboard = () => {
   const { data: studentData, isLoading: isStudentLoading } = useFetch("http://localhost:8080/student");
-  const { data: professorData, isLoading: isProfessorLoading } = useFetch("http://localhost:8080/professor");
+  const { data: professorData, isLoading: isProfessorLoading } = useFetch("http://localhost:8080/professor/1");
 
 
   const handleGivewayCoinStudent = (studentId: string) => {
@@ -20,11 +20,11 @@ const ProfessorDashboard = () => {
 
   const [students, setStudents] = useState([]);
 
-  const hasCoins = () => professorData?.data[0]?.coins !== undefined;
+  const hasCoins = () => professorData?.data.coin_balance !== undefined;
 
   return (
     <ProfessorLayout>
-      <PageHeader title="Dashboard" redirectAction={""} backAction={""} coins={hasCoins() ? professorData?.data[0].coins.toString() : "0"}/>
+      <PageHeader title="Dashboard" redirectAction={""} backAction={""} coins={hasCoins() ? professorData?.data.coin_balance: "0"}/>
       <S.Wrapper>
        {isStudentLoading
         ? "Carregando..."

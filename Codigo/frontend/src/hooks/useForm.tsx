@@ -40,7 +40,7 @@ export function useFormTemplate(
       newVal = event;
     }
 
-    setValues({ ...values, coins: values.coins + newVal });
+    setValues({ ...values, coins: newVal });
   };
 
   const setError = (prop: string, error: string) => {
