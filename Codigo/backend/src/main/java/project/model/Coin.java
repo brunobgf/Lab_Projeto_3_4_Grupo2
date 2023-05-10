@@ -14,10 +14,16 @@ public class Coin {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "id_student")
+    private Long id_student;
+
+    @Column(name = "id_professor")
+    private Long id_professor;
+
     @Column(name = "motivation")
     private String motivation;
 
-    @Column(name = "student_id")
-    private Student student;
+    @Column(name = "amount")
+    private double amount;
 
 }

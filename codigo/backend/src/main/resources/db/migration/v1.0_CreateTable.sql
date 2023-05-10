@@ -1,9 +1,13 @@
 CREATE TABLE coin (
     id INT auto_increment PRIMARY KEY,
+    id_student INT NOT NULL,
+    id_professor INT NOT NULL,
     motivation VARCHAR(50) NOT NULL,
+    amount DECIMAL,
 
-    CONSTRAINT FK_for_student_coin_id FOREIGN KEY (student_id) REFERENCES student(id)
-)
+    CONSTRAINT FK_for_student_coin_id FOREIGN KEY (id_student) REFERENCES student(id),
+    CONSTRAINT FK_for_professor_coin_id FOREIGN KEY (id_professor) REFERENCES professor(id)
+);
 
 CREATE TABLE partner (
     id INT auto_increment PRIMARY KEY,
