@@ -11,7 +11,7 @@ import * as S from "./styles";
 import IconCard from "@/components/Card/IconCard";
 
 const StudentDashboard = () => {
-  const { data, isLoading } = useFetch("http://localhost:8080/student");
+  const { data: coinData, isLoading } = useFetch("http://localhost:8080/coin/byStudent/1");
   const { handleDelete } = useStudentData();
 
   const deleteStudent = (studentId: string) => {
@@ -20,12 +20,17 @@ const StudentDashboard = () => {
 
   const [students, setStudents] = useState([]);
 
-  const hasCoins = () => data?.data[0]?.coins !== undefined;
+  let coins = 0;
+
+    coinData?.data.map((coin: any) => (
+      coins =+ coin.amount))
+
+  console.log(coinData?.data);
 
 
   return (
     <StudentLayout>
-      <PageHeader title="Dashboard" redirectAction={""} backAction={""} coins={hasCoins() ? data?.data[0].coins.toString() : "0"}/>
+      <PageHeader title="Dashboard" redirectAction={""} backAction={""} coins={coins}/>
       <S.Wrapper>
 
       <S.CardWrapper>
