@@ -20,12 +20,7 @@ const ProfessorDashboard = () => {
 
   const [students, setStudents] = useState([]);
 
-
-
   const hasCoins = () => professorData?.data[0]?.coins !== undefined;
-
-  
-
 
   return (
     <ProfessorLayout>
