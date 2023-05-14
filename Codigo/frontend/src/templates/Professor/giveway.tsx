@@ -13,6 +13,7 @@ import FormLayout from "@/components/FormLayout";
 import FormPageHeader from "@/components/FormPageHeader";
 import Router from "next/router";
 import toast from "react-hot-toast";
+import Joi from "joi";
 
 
 
@@ -26,11 +27,6 @@ const CoinGiveway = () => {
   const {handleAddCoin} = useProfessorData();
 
   const { query } = useRouter();
-
-  const { values, handleChange, setValues, handleAddCoins, formValidate } = useFormTemplate(
-    defaultValues,
-    {}
-  );
 
   const router = useRouter();
 
@@ -46,14 +42,34 @@ const CoinGiveway = () => {
   );
 
   const { data: professorData, isLoading: isProfessorLoading } = useFetch("http://localhost:8080/professor/1");
-  
+
   const professorCoins = professorData?.data.coin_balance;
+
+  const fieldsValidations = {
+    coins: Joi.number().min(0).required().messages({
+      "number.base": `O campo de moedas precisa ser um número`,
+      "number.min": `O campo de moedas não pode ser negativo`,
+      "number.max": `O campo de moedas é superior ao que existe de moedas disponíveis`,
+      "any.required": `Este campo é obrigatório`,
+    }),
+    motivation: Joi.string().required().messages({
+      "string.empty": `Este campo é obrigatório`,
+    }),
+  };
+
+  const { values, handleChange, setValues, handleAddCoins, formValidate, errors } = useFormTemplate(
+    defaultValues,
+    fieldsValidations,
+    {}
+  );
+
+ 
+
 
   const testToast = () => {
 
-    //TODO: Test this tomorrow
 
-    if (formValidate(professorCoins>=values.coins)) {
+    if (formValidate()) {
       toast.error("Confira os seus dados");
       return;
     }
@@ -94,10 +110,12 @@ const CoinGiveway = () => {
           <TextField
             label="Quantidade de moedas"
             onChange={handleAddCoins("coins")}
+            error={errors.coins && errors.coins}
           />
          <TextField
             label="Motivo de envio"
             onChange={handleChange("motivation")}
+            error={errors.motivation && errors.motivation}
           />
      
           <VSpace height={30} />

@@ -22,6 +22,8 @@ const ProfessorDashboard = () => {
 
   const hasCoins = () => professorData?.data.coinBalance != undefined;
 
+  console.log(professorData?.data.coinBalance)
+
   return (
     <ProfessorLayout>
       <PageHeader title="Dashboard" redirectAction={""} backAction={""} coins={hasCoins() ? professorData?.data.coinBalance: "0"}/>

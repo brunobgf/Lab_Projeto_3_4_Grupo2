@@ -53,18 +53,15 @@ export function useFormTemplate(
   };
 
   function getFieldErrors(objError) {
-    //     const errorsRes: FieldErrors = {};
-    //     if (objError.error) {
-    //       objError.error.details.forEach((err) => {
-    //         errorsRes[err.path.join(".")] = err.message;
-    //       });
-    //     }
-    //     return errorsRes;
-    //   }
-    //   const resetForm = () => {
-    //     setValues(initialFValues);
-    //     setErrors({});
-  }
+        const errorsRes: FieldErrors = {};
+        if (objError.error) {
+          objError.error.details.forEach((err) => {
+            errorsRes[err.path.join(".")] = err.message;
+          });
+        }
+        return errorsRes;
+      }
+
 
   const formValidate = (arg?: any, additionalValidation?: any) => {
       const validationSchema = !!arg ? validations(arg) : validations
@@ -79,8 +76,8 @@ export function useFormTemplate(
         'date.base': `Este campo é obrigatório`,
         'string.email': `Email inválido`
       })
-      const formErrors = getFieldErrors(schema.validate(values, { abortEarly: false, allowUnknown: true }))
-      if (Object.keys(formErrors).length != 0) {
+      const formErrors = getFieldErrors(schema.validate(values, { abortEarly: true, allowUnknown: true }))
+      if ( Object.keys(formErrors).length != 0) {
         toast.error('Preencha corretamente os dados do formulário')
         setErrors(formErrors)
         return false // has error
