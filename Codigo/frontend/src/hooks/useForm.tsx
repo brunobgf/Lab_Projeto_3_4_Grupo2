@@ -1,4 +1,6 @@
+import Joi from "joi";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export function useFormTemplate(
   initialFValues: any,
@@ -65,27 +67,27 @@ export function useFormTemplate(
   }
 
   const formValidate = (arg?: any, additionalValidation?: any) => {
-    //   const validationSchema = !!arg ? validations(arg) : validations
-    //   const schema = Joi.object(validationSchema).messages({
-    //     'number.base': `Este campo é obrigatório`,
-    //     'string.base': `Este campo é obrigatório`,
-    //     'string.empty': `Este campo é obrigatório`,
-    //     'any.required': `Este campo é obrigatório`,
-    //     'string.max': `Este campo deve ter um máximo de {#limit} caracteres`,
-    //     'number.max': `Este campo deve ter um valor máximo de {#limit}`,
-    //     'number.integer': `Este campo deve conter um número inteiro`,
-    //     'date.base': `Este campo é obrigatório`,
-    //     'string.email': `Email inválido`
-    //   })
-    //   const formErrors = getFieldErrors(schema.validate(values, { abortEarly: false, allowUnknown: true }))
-    //   if (Object.keys(formErrors).length != 0) {
-    //     toast.error('Preencha corretamente os dados do formulário')
-    //     setErrors(formErrors)
-    //     return false // has error
-    //   }
-    //   if (!!additionalValidation && !additionalValidation(values)) return false
-    //   setErrors({})
-    //   return true
+      const validationSchema = !!arg ? validations(arg) : validations
+      const schema = Joi.object(validationSchema).messages({
+        'number.base': `Este campo é obrigatório`,
+        'string.base': `Este campo é obrigatório`,
+        'string.empty': `Este campo é obrigatório`,
+        'any.required': `Este campo é obrigatório`,
+        'string.max': `Este campo deve ter um máximo de {#limit} caracteres`,
+        'number.max': `Este campo deve ter um valor máximo de {#limit}`,
+        'number.integer': `Este campo deve conter um número inteiro`,
+        'date.base': `Este campo é obrigatório`,
+        'string.email': `Email inválido`
+      })
+      const formErrors = getFieldErrors(schema.validate(values, { abortEarly: false, allowUnknown: true }))
+      if (Object.keys(formErrors).length != 0) {
+        toast.error('Preencha corretamente os dados do formulário')
+        setErrors(formErrors)
+        return false // has error
+      }
+      if (!!additionalValidation && !additionalValidation(values)) return false
+      setErrors({})
+      return true
   };
 
   return {

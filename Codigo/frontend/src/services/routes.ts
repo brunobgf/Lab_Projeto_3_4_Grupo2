@@ -18,6 +18,9 @@ const apiRoutes = {
     coin: {
       base: `http://localhost:8080/coin`
     },
+    benefit: {
+      base: `http://localhost:8080/benefit`
+    }
   };
   
   export default apiRoutes;

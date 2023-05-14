@@ -5,6 +5,8 @@ import Router from "next/router";
 import dynamic from "next/dynamic";
 import { Handshake } from '@styled-icons/fa-solid/Handshake';
 import { PeopleFill } from '@styled-icons/bootstrap/PeopleFill'
+import { Bill } from  '@styled-icons/remix-line/Bill'
+import { Wallet } from '@styled-icons/ionicons-solid/Wallet'
 
 
 const links = [
@@ -15,14 +17,19 @@ const links = [
 
   const professorLinks = [
     { href: "/professor/dashboard", label: "Dashboard", icon: <PeopleFill size={30}/>,},
+    { href: "/professor/history", label: "Histórico", icon: <Bill size={30}/>,},
   ];
   const studentLinks = [
-    { href: "/student/dashboard", label: "Dashboard", icon: <PeopleFill size={30}/>,},
+    { href: "/student/history", label: "Histórico", icon: <Bill size={30}/>},
+    {href: "/student/benefit", label: "Benefício", icon: <Wallet size={30}/>},
+  ];
+  const partnerLinks = [
+    {href: "/partner/benefit", label: "Benefício", icon: <Wallet size={30}/>},
   ];
 
   const Link = dynamic(() => import("next/link"), { ssr: false });
 
-const Sidebar = ({showLinks, showProfessorLinks, showStudentLinks}) => {
+const Sidebar = ({showLinks, showProfessorLinks, showStudentLinks, showPartnerLinks}) => {
     return (
       <S.SidebarWrapper>
         <S.SidebarHeader>SGM</S.SidebarHeader>
@@ -52,6 +59,15 @@ const Sidebar = ({showLinks, showProfessorLinks, showStudentLinks}) => {
               <S.SidebarLink>
                 {studentLink.icon}
                 <span className="link-label">{studentLink.label}</span>
+              </S.SidebarLink>
+            </Link>
+          ))}
+          {showPartnerLinks  &&
+          partnerLinks.map((partnerLink) => (
+            <Link href={partnerLink.href} key={partnerLink.label}>
+              <S.SidebarLink>
+                {partnerLink.icon}
+                <span className="link-label">{partnerLink.label}</span>
               </S.SidebarLink>
             </Link>
           ))}

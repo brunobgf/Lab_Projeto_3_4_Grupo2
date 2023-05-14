@@ -12,6 +12,7 @@ import { useFetch } from "@/utils/reactQuery";
 import FormLayout from "@/components/FormLayout";
 import FormPageHeader from "@/components/FormPageHeader";
 import Router from "next/router";
+import toast from "react-hot-toast";
 
 
 
@@ -26,7 +27,7 @@ const CoinGiveway = () => {
 
   const { query } = useRouter();
 
-  const { values, handleChange, setValues, handleAddCoins } = useFormTemplate(
+  const { values, handleChange, setValues, handleAddCoins, formValidate } = useFormTemplate(
     defaultValues,
     {}
   );
@@ -49,6 +50,13 @@ const CoinGiveway = () => {
   const professorCoins = professorData?.data.coin_balance;
 
   const testToast = () => {
+
+    //TODO: Test this tomorrow
+
+    if (formValidate(professorCoins>=values.coins)) {
+      toast.error("Confira os seus dados");
+      return;
+    }
 
     handleAddCoin(
       String(query.studentId),
