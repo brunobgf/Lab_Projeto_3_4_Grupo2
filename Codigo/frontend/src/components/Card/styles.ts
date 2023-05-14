@@ -76,6 +76,11 @@ export const GiveCoins = styled(Edit)`
 color: #FFA400;
 `;
 
+export const Benefit = styled(Edit)`
+color: #441AFE;
+`;
+
+
 export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;

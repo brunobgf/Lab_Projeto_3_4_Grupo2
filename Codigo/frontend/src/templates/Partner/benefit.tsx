@@ -2,7 +2,7 @@
 
 import PartnerLayout from "@/components/Layout/PartnerLayout";
 import PageHeader from "@/components/PageHeader";
-import { useStudentData } from "@/services/api/student";
+import { useBenefitData } from "@/services/api/benefit";
 import { useFetch } from "@/utils/reactQuery";
 import Router from "next/router";
 import React, { useState } from "react";
@@ -12,27 +12,29 @@ import * as S from "./styles";
 const PartnerDashboard = () => {
   const { data: benefitData, isLoading: isBenefitLoading } = useFetch("http://localhost:8080/benefit");
 
+  const { handleDeleteBenefit } = useBenefitData();
+
   const handleEditBenefit = (benefitId: string) => {
     Router.push(`/benefit/${benefitId}/edit`);
   };
 
   const deleteBenefit = (benefitId: string) => {
-    handleDelete(benefitId);
+    handleDeleteBenefit(benefitId);
   };
 
 
   return (
     <PartnerLayout>
-      <PageHeader title="Benefícios" redirectAction={"Novo +"} backAction={""} coins={""}/>
+      <PageHeader title="Benefícios" redirectAction={"/partner/benefit/new"} backAction={""} coins={""}/>
       <S.Wrapper>
        {isBenefitLoading
         ? "Carregando..."
-        : benefitData?.data.map((student: any) => (
+        : benefitData?.data.map((benefit: any) => (
             <Card
-              key={student.id}
+              key={benefit.id}
               children={""}
-              title={student.name}
-              name={student.name}
+              title={benefit.name}
+              name={benefit.name}
               onGiveCoins={""}
               onEdit={() => handleEditBenefit(benefit.id)}
               onDelete={() => deleteBenefit(benefit.id)}

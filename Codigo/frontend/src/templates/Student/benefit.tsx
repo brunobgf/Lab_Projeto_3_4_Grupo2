@@ -12,13 +12,12 @@ import IconCard from "@/components/Card/IconCard";
 
 const StudentBenefits = () => {
   const { data: coinData, isLoading } = useFetch("http://localhost:8080/coin/byStudent/1");
+  const { data: benefitData, isLoading: isBenefitLoading } = useFetch("http://localhost:8080/benefit");
   const { handleDelete } = useStudentData();
-
-  const deleteStudent = (studentId: string) => {
-    handleDelete(studentId);
+  const handleShowBenefit = (benefitId: string) => {
+    Router.push(`/partner/benefit/${benefitId}/show`);
   };
 
-  const [students, setStudents] = useState([]);
 
   let coins = 0;
 
@@ -33,19 +32,28 @@ const StudentBenefits = () => {
       <PageHeader title="Benefícios" redirectAction={""} backAction={""} coins={coins}/>
       <S.Wrapper>
 
-      <S.CardWrapper>
-        <IconCard
-          title="Benefício 1"
-          onClick=''
-          icon=""
-        ></IconCard>
-
-        <IconCard
-          title="Benefício 2"
-          onClick=""
-          icon=""
-        ></IconCard>
-      </S.CardWrapper>
+      {/* {isLoading
+        ? "Carregando..."
+        : benefitData?.data.map((benefit: any) => (
+            <Card
+              key={benefit.id}
+              children={""}
+              title={benefit.name}
+              name={benefit.name}
+              onEdit={""}
+              onDelete={""}
+              onShowBenefit={() => handleShowBenefit(benefit.id)}
+            />
+          ))} */}
+           <Card
+              key={"benefit.id"}
+              children={""}
+              title={"benefit.name"}
+              name={"benefit.name"}
+              onEdit={""}
+              onDelete={""}
+              onShowBenefit={() => handleShowBenefit("benefit.id")}
+              />
 
       </S.Wrapper>
     </StudentLayout>

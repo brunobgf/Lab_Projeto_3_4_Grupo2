@@ -19,7 +19,8 @@ const apiRoutes = {
       base: `http://localhost:8080/coin`
     },
     benefit: {
-      base: `http://localhost:8080/benefit`
+      base: `http://localhost:8080/benefit`,
+      benefitById: `http://localhost:8080/benefit/`,
     }
   };
   

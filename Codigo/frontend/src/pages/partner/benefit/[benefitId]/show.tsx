@@ -1,10 +1,10 @@
 import Layout from "@/components/Layout";
 //import { useAuth } from "@/hooks/useAuth";
 import apiRoutes from "@/services/routes";
-import Form from "@/templates/Partner/benefitform";
+import Form from "@/templates/Student/showbenefit";
 
 import axios from "axios";
 
-const BenefitFormEdit = (props) => <Form {...props} />;
+const BenefitFormShow = (props) => <Form {...props} />;
 
-export default BenefitFormEdit;
+export default BenefitFormShow;
