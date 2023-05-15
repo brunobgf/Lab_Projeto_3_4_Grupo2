@@ -64,15 +64,36 @@ const CoinGiveway = () => {
   );
 
  
+  function validaCampos(){
+    if (values.coins <= 0) {
+      toast.error("Quantidade de moedas deve ser maior que 0.");
+      return false;
+    }
+
+    if (!values.motivation){
+      toast.error("Motivo do envio deve ser preenchido.");
+      return false;
+    }
+
+    return true;
+  }
+
+  function justNumbers(e: any){
+    var charCode = e.charCode ? e.charCode : e.keyCode;
+
+    if (charCode != 8 && charCode != 9) {
+        if (charCode < 48 || charCode > 57) {
+            return false;
+        }
+    }
+
+  }
 
 
   const testToast = () => {
 
-
-    if (formValidate()) {
-      toast.error("Confira os seus dados");
+    if (!validaCampos())
       return;
-    }
 
     handleAddCoin(
       String(query.studentId),
