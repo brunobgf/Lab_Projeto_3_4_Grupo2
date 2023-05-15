@@ -1,3 +1,11 @@
+CREATE TABLE benefit (
+    id INT auto_increment PRIMARY KEY,
+    coinValue INT NOT NULL,
+    description VARCHAR(100) NOT NULL,
+    photo VARCHAR(100) NOT NULL,
+    CONSTRAINT FK_for_partner_id FOREIGN KEY (id_partner) REFERENCES partner(id),    
+);
+
 CREATE TABLE coin (
     id INT auto_increment PRIMARY KEY,
     id_student INT NOT NULL,
