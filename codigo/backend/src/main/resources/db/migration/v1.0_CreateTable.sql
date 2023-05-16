@@ -1,8 +1,8 @@
 CREATE TABLE benefit (
     id INT auto_increment PRIMARY KEY,
-    coinValue INT NOT NULL,
+    price INT NOT NULL,
     description VARCHAR(100) NOT NULL,
-    photo VARCHAR(100) NOT NULL,
+    photo TEXT,
     CONSTRAINT FK_for_partner_id FOREIGN KEY (id_partner) REFERENCES partner(id),    
 );
 

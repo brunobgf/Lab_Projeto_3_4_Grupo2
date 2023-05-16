@@ -1,5 +1,8 @@
 package project.model;
 
+import java.io.File;
+import java.nio.Buffer;
+
 import javax.persistence.*;
 import lombok.Data;
 import lombok.ToString;
@@ -15,8 +18,8 @@ public class Benefit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "coinValue")
-    private double coinValue;
+    @Column(name = "price")
+    private double price;
 
     @Column(name = "description")
     private String description;
