@@ -13,6 +13,8 @@ import { useFetch } from "@/utils/reactQuery";
 import FormLayout from "@/components/FormLayout";
 import FormPageHeader from "@/components/FormPageHeader";
 import { useState } from "react";
+import Joi from "joi";
+import toast from "react-hot-toast";
 
 
 
@@ -31,8 +33,27 @@ const RegisterBenefit = () => {
 
   const [base64Image, setBase64Image] = useState('');
 
-  const { values, handleChange, setValues } = useFormTemplate(
+  const fieldsValidations = {
+    name: Joi.string().required().messages({
+      "string.empty": `Este campo é obrigatório`,
+    }),
+    price: Joi.number().min(0).required().messages({
+      "number.base": `O campo de moedas precisa ser um número`,
+      "number.min": `O campo de moedas não pode ser negativo`,
+      "number.max": `O campo de moedas é superior ao que existe de moedas disponíveis`,
+      "any.required": `Este campo é obrigatório`,
+    }),
+    description: Joi.string().required().messages({
+      "string.empty": `Este campo é obrigatório`,
+    }),
+    image: Joi.string().required().messages({
+      "string.empty": `Este campo é obrigatório`,
+    }),
+  };
+
+  const { values, handleChange, setValues, errors, formValidate } = useFormTemplate(
     defaultValues,
+    fieldsValidations,
     {}
   );
 
@@ -47,8 +68,15 @@ const RegisterBenefit = () => {
   );
 
   const testToast = () => {
+
+
     const decodedImage = Buffer.from(base64Image, 'base64');
     const fullImage = `data:image/jpeg;base64,${decodedImage.toString('base64')}`;
+
+    if (formValidate()) {
+      toast.error("Confira os seus dados");
+      return;
+    }
     query.benefitId
       ? handleEditBenefit(
         String(query.benefitId),
@@ -58,6 +86,7 @@ const RegisterBenefit = () => {
         fullImage,
       )
       : handleAddBenefit(
+        
         values.name,
         values.price,
         values.description,
@@ -80,17 +109,20 @@ const RegisterBenefit = () => {
               label="Nome"
               value={values.name}
               onChange={handleChange("name")}
+              error={errors.name && errors.name}
             />
           <TextField
             label="Preço"
             value={values.price}
             onChange={handleChange("price")}
+            error={errors.price && errors.price}
           />
           </S.TextFieldWrapper>
           <TextField
               label="Descrição"
               value={values.description}
               onChange={handleChange("description")}
+              error={errors.description && errors.description}
             />
             <VSpace height={20} />
             <ImageUpload
