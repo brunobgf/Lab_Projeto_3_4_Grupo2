@@ -55,8 +55,10 @@ export function useFormTemplate(
   function getFieldErrors(objError) {
         const errorsRes: FieldErrors = {};
         if (objError.error) {
+          
           objError.error.details.forEach((err) => {
             errorsRes[err.path.join(".")] = err.message;
+            console.log(err.message)
           });
         }
         return errorsRes;
@@ -77,7 +79,7 @@ export function useFormTemplate(
         'string.email': `Email inválido`
       })
       const formErrors = getFieldErrors(schema.validate(values, { abortEarly: true, allowUnknown: true }))
-      if ( Object.keys(formErrors).length != 0) {
+      if ( Object.keys(formErrors).length > 0) {
         toast.error('Preencha corretamente os dados do formulário')
         setErrors(formErrors)
         return false // has error

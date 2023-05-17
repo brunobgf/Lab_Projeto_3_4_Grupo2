@@ -47,9 +47,6 @@ const RegisterBenefit = () => {
     description: Joi.string().required().messages({
       "string.empty": `Este campo é obrigatório`,
     }),
-    image: Joi.string().required().messages({
-      "string.empty": `Este campo é obrigatório`,
-    }),
   };
 
   const { values, handleChange, setValues, errors, formValidate } = useFormTemplate(
@@ -69,15 +66,15 @@ const RegisterBenefit = () => {
   );
 
   const testToast = () => {
-
-
     const decodedImage = Buffer.from(base64Image, 'base64');
     const fullImage = `data:image/jpeg;base64,${decodedImage.toString('base64')}`;
 
-    if (formValidate()) {
+    if (!formValidate()) {
+      console.log('ENTROU')
       toast.error("Confira os seus dados");
       return;
     }
+
     query.benefitId
       ? handleEditBenefit(
         String(query.benefitId),
@@ -86,8 +83,8 @@ const RegisterBenefit = () => {
         values.description,
         fullImage,
       )
-      : handleAddBenefit(
-        
+
+      : handleAddBenefit(     
         values.name,
         values.price,
         values.description,

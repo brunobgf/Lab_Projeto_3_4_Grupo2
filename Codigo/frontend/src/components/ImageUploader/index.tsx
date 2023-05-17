@@ -10,6 +10,7 @@ const ImageUploader = ({ setBase64Image }) => {
     if (file) {
       const fileSizeInBytes = file.size;
       const maxSizeInBytes = 120 * 1024; // 120 kbytes
+
       if (fileSizeInBytes > maxSizeInBytes) {
 
         toast.error("A imagem escolhida não pode ser maior que 120kB.");
@@ -31,6 +32,7 @@ const ImageUploader = ({ setBase64Image }) => {
 
   return (
     <>
+    
       <S.Label htmlFor="image-upload">Carregar imagem</S.Label>
       <S.Input
         id="image-upload"
