@@ -39,7 +39,7 @@ const StudentBenefits = () => {
               key={benefit.id}
               children={""}
               title={benefit.name}
-              name={benefit.name}
+              name={'Vantagem: ' + benefit.name + ' - ' + benefit.price + ' moeda(s)'}
               onEdit={""}
               onDelete={""}
               onShowBenefit={() => handleShowBenefit(benefit.id)}

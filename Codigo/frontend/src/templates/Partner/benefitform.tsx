@@ -16,6 +16,7 @@ import { useState } from "react";
 import Joi from "joi";
 import toast from "react-hot-toast";
 import Router from "next/router";
+import ImageContainer from "@/components/ImageContainer";
 
 
 
@@ -70,9 +71,13 @@ const RegisterBenefit = () => {
     const fullImage = `data:image/jpeg;base64,${decodedImage.toString('base64')}`;
 
     if (!formValidate()) {
-      console.log('ENTROU')
       toast.error("Confira os seus dados");
       return;
+    }
+
+    if (!base64Image) {
+      toast.error("Imagem é obrigatória.");
+      return;    
     }
 
     query.benefitId
@@ -81,7 +86,7 @@ const RegisterBenefit = () => {
         values.name,
         values.price,
         values.description,
-        fullImage,
+        base64Image,
       )
 
       : handleAddBenefit(     
@@ -129,6 +134,10 @@ const RegisterBenefit = () => {
             <ImageUpload
                 setBase64Image={setBase64Image}
             />
+            {values.image && 
+            <ImageContainer
+                base64String={values.image}
+            />}
           <VSpace height={30} />
           <Button onClick={testToast}>Salvar</Button>
         </>
