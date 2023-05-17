@@ -15,7 +15,7 @@ const PartnerDashboard = () => {
   const { handleDeleteBenefit } = useBenefitData();
 
   const handleEditBenefit = (benefitId: string) => {
-    Router.push(`/benefit/${benefitId}/edit`);
+    Router.push(`/partner/benefit/${benefitId}/edit`);
   };
 
   const deleteBenefit = (benefitId: string) => {
