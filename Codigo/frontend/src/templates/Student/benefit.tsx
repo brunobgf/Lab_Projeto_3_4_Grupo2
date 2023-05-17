@@ -32,7 +32,7 @@ const StudentBenefits = () => {
       <PageHeader title="Benefícios" redirectAction={""} backAction={""} coins={coins}/>
       <S.Wrapper>
 
-      {/* {isLoading
+      {isLoading
         ? "Carregando..."
         : benefitData?.data.map((benefit: any) => (
             <Card
@@ -44,8 +44,8 @@ const StudentBenefits = () => {
               onDelete={""}
               onShowBenefit={() => handleShowBenefit(benefit.id)}
             />
-          ))} */}
-           <Card
+          ))}
+           {/* <Card
               key={"benefit.id"}
               children={""}
               title={"benefit.name"}
@@ -53,7 +53,7 @@ const StudentBenefits = () => {
               onEdit={""}
               onDelete={""}
               onShowBenefit={() => handleShowBenefit("benefit.id")}
-              />
+              /> */}
 
       </S.Wrapper>
     </StudentLayout>

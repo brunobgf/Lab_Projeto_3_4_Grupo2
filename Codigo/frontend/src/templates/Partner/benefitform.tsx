@@ -15,6 +15,7 @@ import FormPageHeader from "@/components/FormPageHeader";
 import { useState } from "react";
 import Joi from "joi";
 import toast from "react-hot-toast";
+import Router from "next/router";
 
 
 
@@ -92,6 +93,9 @@ const RegisterBenefit = () => {
         values.description,
         base64Image,
       );
+
+      Router.reload()
+      Router.push("/partner/benefit")   
   };
 
 
