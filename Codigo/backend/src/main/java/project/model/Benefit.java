@@ -11,7 +11,6 @@ import lombok.ToString;
 @Data
 @ToString
 @Table(name = "benefit")
-
 public class Benefit {
     @Id
     @Column(name = "id")
@@ -24,8 +23,8 @@ public class Benefit {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "photo")
-    private String photo;
+    @Column(name = "image")
+    private String image;
 
     @Column(name = "name")
     private String name;
