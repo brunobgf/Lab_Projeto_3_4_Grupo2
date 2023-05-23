@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import project.model.Benefit;
 
 @Repository
-public interface BenefitRepository extends JpaRepository<Benefit, Long>{
-    
+public interface BenefitRepository extends JpaRepository<Benefit, Long> {
+
 }

@@ -14,20 +14,24 @@ import FormLayout from "@/components/FormLayout";
 import FormPageHeader from "@/components/FormPageHeader";
 import { useState } from "react";
 import ImageContainer from "@/components/ImageContainer";
-
+import toast from "react-hot-toast";
+import { func } from "joi";
+import { useStudentData } from "@/services/api/student";
 
 
 const defaultValues = {
- name: "",
- price: "",
- description: "",
- image: "",
+  name: "",
+  price: "",
+  description: "",
+  image: "",
 };
 
 
 
 const RegisterBenefit = () => {
-  const { handleAddBenefit, handleEditBenefit } = useBenefitData();
+  const { handleAddBenefitStudent } = useStudentData();
+  const { handleEdit } = useStudentData();
+  const { data: coinData } = useFetch("http://localhost:8080/coin/byStudent/1");
   const { query } = useRouter();
 
 
@@ -43,29 +47,40 @@ const RegisterBenefit = () => {
     {},
     {
       onSuccess: ({ data }: any) => {
-        setValues({ ...data});
+        setValues({ ...data });
       },
     }
   );
 
-//   const testToast = () => {
-//     const decodedImage = Buffer.from(base64Image, 'base64');
-//     const fullImage = `data:image/jpeg;base64,${decodedImage.toString('base64')}`;
-//     query.benefitId
-//       ? handleEditBenefit(
-//         String(query.benefitId),
-//         values.name,
-//         values.price,
-//         values.description,
-//         fullImage,
-//       )
-//       : handleAddBenefit(
-//         values.name,
-//         values.price,
-//         values.description,
-//         base64Image,
-//       );
-//   };
+  function userBalance() {
+    let coins = 0;
+
+    coinData?.data.map((coin: any) => (
+      coins = coins + coin.amount))
+
+    return coins;
+  }
+
+  function validate() {
+
+    if (userBalance() < values.price) {
+      toast.error("Saldo insuficiente.");
+      return false;
+    }
+  }
+
+  const replace = () => {
+
+    if (!validate()) {
+      toast.error("");
+      return false;
+    }
+    
+    handleAddBenefitStudent(
+        String(query.benefitId),
+        String(query.studentId)
+    );
+  }
 
 
   return (
@@ -78,30 +93,30 @@ const RegisterBenefit = () => {
         <>
 
           <S.TextFieldWrapper>
-          <TextField
+            <TextField
               label="Nome"
               value={values.name}
-              readOnly = {values.name}
+              readOnly={values.name}
             />
-          <TextField
-            label="Preço"
-            value={values.price}
-            readOnly = {values.price}
-           
-          />
-          </S.TextFieldWrapper>
-          <TextField
-              label="Descrição"
-              value={values.description}
-              readOnly = {values.description}
+            <TextField
+              label="Preço"
+              value={values.price}
+              readOnly={values.price}
 
             />
-            <VSpace height={20} />
-            <ImageContainer
-                base64String={values.image}
-            />
+          </S.TextFieldWrapper>
+          <TextField
+            label="Descrição"
+            value={values.description}
+            readOnly={values.description}
+
+          />
+          <VSpace height={20} />
+          <ImageContainer
+            base64String={values.image}
+          />
           <VSpace height={30} />
-          <Button onClick={""}>Comprar</Button>
+          <Button onClick={replace()}>Comprar</Button>
           <Button onClick={""}>Cancelar</Button>
         </>
       )}

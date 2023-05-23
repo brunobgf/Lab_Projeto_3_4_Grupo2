@@ -1,6 +1,8 @@
 package project.service;
 
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -18,6 +20,10 @@ public class StudentService {
 
     public Student get(Long id) {
         return repository.findById(id).get();
+    }
+
+    public Double getBalance(Long id) {
+        return repository.getBalance(id);
     }
 
     public List<Student> getAll() {

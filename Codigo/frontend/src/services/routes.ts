@@ -21,6 +21,9 @@ const apiRoutes = {
     benefit: {
       base: `http://localhost:8080/benefit`,
       benefitById: `http://localhost:8080/benefit/`,
+    },
+    benefitStudent: {
+      base: `http://localhost:8080/benefitStudent`
     }
   };
   

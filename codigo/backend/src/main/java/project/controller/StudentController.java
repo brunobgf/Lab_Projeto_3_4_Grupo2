@@ -30,6 +30,11 @@ public class StudentController {
         return ResponseEntity.ok().body(service.get(id));
     }
 
+    @GetMapping("/saldo/{id}")
+    public ResponseEntity<Double> getSaldo(@PathVariable Long id) {
+        return ResponseEntity.ok().body(service.getBalance(id));
+    }
+
     @GetMapping("")
     public ResponseEntity<List<Student>> getAll() {
         return ResponseEntity.ok().body(service.getAll());

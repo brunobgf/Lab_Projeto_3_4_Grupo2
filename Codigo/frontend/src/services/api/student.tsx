@@ -5,10 +5,31 @@ import apiRoutes from "../routes";
 
 export const useStudentData = () => {
   const studentMutation = useMultimethodMutation(apiRoutes.student.base);
+  const benefitStudent = useMultimethodMutation(apiRoutes.benefitStudent.base);
   const studentByIdMutation = useMultimethodMutation(
     apiRoutes.student.studentById,
     apiRoutes.student.base
   );
+
+  const handleAddBenefitStudent = (
+    id_benefit: any,
+    id_student: any    
+  ) => {
+    benefitStudent.mutate(
+      {
+        data: { id_benefit, id_student },
+        method: "POST",
+      },
+      {
+        onSuccess: ({ data }) => {
+          toast.success("Benefício gravado com sucesso.");
+        },
+        onError: (err: any) => {
+          toast.error("Erro ao gravar benefício para estudante.");
+        },
+      }
+    );
+  };
 
   const handleAdd = (
     name:string,
@@ -85,5 +106,5 @@ export const useStudentData = () => {
 
   const handleRead = () => {};
 
-  return { handleAdd, handleEdit, handleDelete, handleRead };
+  return { handleAdd, handleEdit, handleDelete, handleRead, handleAddBenefitStudent };
 };
