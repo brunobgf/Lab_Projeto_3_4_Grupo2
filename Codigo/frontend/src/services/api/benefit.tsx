@@ -15,10 +15,11 @@ export const useBenefitData = () => {
     price:string,
     description:string,
     image:string,
+    id_partner:string
   ) => {
     benefitMutation.mutate(
       {
-        data: { name, price, description, image,  },
+        data: { name, price, description, image,  partner: {id: id_partner}},
         method: "POST",
       },
       {
@@ -39,10 +40,11 @@ export const useBenefitData = () => {
     price:string,
     description:string,
     image:string,
+    id_partner:string
   ) => {
     benefitByIdMutation.mutate(
       {
-        data: {  name, price, description, image,   },
+        data: {  name, price, description, image, partner: {id: id_partner}},
         method: "PUT",
         additionalQuery: benefitId,
       },

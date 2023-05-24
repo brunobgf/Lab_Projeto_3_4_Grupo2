@@ -2,6 +2,7 @@ package project.controller;
 
 import java.io.Console;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Logger;
 
 import org.apache.commons.mail.DefaultAuthenticator;
@@ -58,22 +59,38 @@ public class BenefitStudentController {
         return student.get(id).getEmail();
     }
 
+    private String emailPartner(Long id) {
+        return benefit.get(id).getPartner().getEmail();
+    }
+
     private String mensageBenefit(Long id) {
+        Random gerador = new Random();
+        Double num = gerador.nextDouble(1000000);
+
         Benefit obj = benefit.get(id);
-        return "Olá. Acabamos de identificar uma troca de moedas em seu nome." +
-                "\n\nMoedas: " + Double.toString(obj.getPrice()) +
+        return "Cupom de troca de moedas: " +
+                "\n\n--------------------------------------------------------------------" +
+                "\nMoedas trocadas: " + Double.toString(obj.getPrice()) +
                 "\nBenefício adquirido: " + obj.getName() + " - " + obj.getDescription() +
-                "\n\nParabéns por sua troca! Até mais.";
+                "\nNúmero do cupom: " + Double.toString(num) +
+                "\n\n--------------------------------------------------------------------";
     }
 
     private void enviaEmail(BenefitStudent obj) {
+        sendEmail(emailStudent(obj.getId_student()), obj);
+        sendEmail(emailPartner(obj.getBenefit().getId()), obj);
+    }
+
+    private void sendEmail(String recipient, BenefitStudent obj) {
 
         String senderEmail = "fa06e99bd44d15";
         String senderPassword = "0c13650f8db1a1";
-        String recipientEmail = emailStudent(obj.getId_student());
+        String recipientEmail = recipient;
         String subject = "Troca de moedas";
         String message = mensageBenefit(obj.getBenefit().getId());
+
         SimpleEmail email = new SimpleEmail();
+
         email.setHostName("sandbox.smtp.mailtrap.io");
         email.setSmtpPort(2525);
         email.setAuthentication(senderEmail, senderPassword);
@@ -81,7 +98,7 @@ public class BenefitStudentController {
         email.setStartTLSEnabled(true);
 
         try {
-            email.setFrom("noreply@example.com");
+            email.setFrom("puctrabalhos.lab@gmail.com");
             email.addTo(recipientEmail);
             email.setSubject(subject);
             email.setMsg(message);

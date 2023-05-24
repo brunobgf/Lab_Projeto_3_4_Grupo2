@@ -87,6 +87,7 @@ const RegisterBenefit = () => {
         values.price,
         values.description,
         base64Image,
+        "1"
       )
 
       : handleAddBenefit(     
@@ -94,6 +95,7 @@ const RegisterBenefit = () => {
         values.price,
         values.description,
         base64Image,
+        "1"
       );
 
       Router.reload()

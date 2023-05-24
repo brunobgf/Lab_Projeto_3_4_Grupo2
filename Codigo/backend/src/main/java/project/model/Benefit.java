@@ -21,6 +21,10 @@ public class Benefit {
     @Column(name = "price")
     private double price;
 
+    @ManyToOne
+    @JoinColumn(name = "id_partner")
+    private Partner partner;
+
     @Column(name = "description")
     private String description;
 
