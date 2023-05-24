@@ -38,6 +38,8 @@ public class BenefitStudentController {
     @Autowired
     private BenefitService benefit;
 
+    private int ticket = new Random().nextInt(1000000);
+
     @GetMapping("/{id}")
     public ResponseEntity<BenefitStudent> get(@PathVariable Long id) {
         return ResponseEntity.ok().body(service.get(id));
@@ -64,16 +66,13 @@ public class BenefitStudentController {
     }
 
     private String mensageBenefit(Long id) {
-        Random gerador = new Random();
-        Double num = gerador.nextDouble(1000000);
-
         Benefit obj = benefit.get(id);
         return "Cupom de troca de moedas: " +
                 "\n\n--------------------------------------------------------------------" +
                 "\nMoedas trocadas: " + Double.toString(obj.getPrice()) +
                 "\nBenefício adquirido: " + obj.getName() + " - " + obj.getDescription() +
-                "\nNúmero do cupom: " + Double.toString(num) +
-                "\n\n--------------------------------------------------------------------";
+                "\nNúmero do cupom: " + Integer.toString(ticket) +
+                "\n--------------------------------------------------------------------";
     }
 
     private void enviaEmail(BenefitStudent obj) {
