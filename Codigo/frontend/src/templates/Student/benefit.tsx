@@ -40,15 +40,6 @@ const StudentBenefits = () => {
               onShowBenefit={() => handleShowBenefit(benefit.id)}
             />
           ))}
-           {/* <Card
-              key={"benefit.id"}
-              children={""}
-              title={"benefit.name"}
-              name={"benefit.name"}
-              onEdit={""}
-              onDelete={""}
-              onShowBenefit={() => handleShowBenefit("benefit.id")}
-              /> */}
 
       </S.Wrapper>
     </StudentLayout>

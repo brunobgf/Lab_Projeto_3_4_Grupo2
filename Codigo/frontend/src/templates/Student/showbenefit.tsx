@@ -54,6 +54,7 @@ const RegisterBenefit = () => {
 
   function validate() {
 
+    console.log(coinData?.data + "  AQQ")
     if (coinData?.data < values.price) {
       toast.error("Saldo insuficiente.");
       return false;
