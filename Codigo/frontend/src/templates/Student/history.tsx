@@ -9,9 +9,11 @@ import React, { useState } from "react";
 import Card from "@/components/Card";
 import * as S from "./styles";
 import IconCard from "@/components/Card/IconCard";
+import apiRoutes from "@/services/routes";
 
 const StudentHistory = () => {
-  const { data: coinData, isLoading } = useFetch("http://localhost:8080/coin/byStudent/1");
+  const {data: coinData, isLoading } = useFetch("http://localhost:8080/coin/byStudent/1");
+  const { data: balance } = useFetch(apiRoutes.student.balance + "1");
   const { data: exits} = useFetch("http://localhost:8080/benefitStudent/byStudent/1");
   const { data: professorData, isLoading: isProfessorLoading } = useFetch("http://localhost:8080/professor/1");
   const { handleDelete } = useStudentData();
@@ -22,17 +24,9 @@ const StudentHistory = () => {
 
   const [students, setStudents] = useState([]);
 
-  let coins = 0;
-
-    coinData?.data.map((coin: any) => (
-      coins = coins + coin.amount))
-
-  console.log(coinData?.data);
-
-
   return (
     <StudentLayout>
-      <PageHeader title="Extrato" redirectAction={""} backAction={""} coins={coins}/>
+      <PageHeader title="Extrato" redirectAction={""} backAction={""} coins={balance?.data}/>
       <S.Wrapper>
 
       {coinData?.data.map((coin: any) => (

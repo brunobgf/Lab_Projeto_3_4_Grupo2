@@ -57,6 +57,8 @@ public class BenefitStudentController {
         return ResponseEntity.ok().body(ret);
     }
 
+    // #region email
+
     private String emailStudent(Long id) {
         return student.get(id).getEmail();
     }
@@ -108,4 +110,6 @@ public class BenefitStudentController {
         }
 
     }
+
+    // #endregion
 }

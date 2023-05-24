@@ -66,7 +66,6 @@ const RegisterBenefit = () => {
   const replace = () => {
 
     if (!validate()) {
-      toast.error("");
       return false;
     }
 
