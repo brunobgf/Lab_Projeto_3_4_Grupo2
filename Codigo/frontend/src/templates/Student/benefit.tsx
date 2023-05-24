@@ -9,27 +9,22 @@ import React, { useState } from "react";
 import Card from "@/components/Card";
 import * as S from "./styles";
 import IconCard from "@/components/Card/IconCard";
+import apiRoutes from "@/services/routes";
 
 const StudentBenefits = () => {
-  const { data: coinData, isLoading } = useFetch("http://localhost:8080/coin/byStudent/1");
+  const { data, isLoading } = useFetch("http://localhost:8080/coin/byStudent/1");
+  const { data: coinData } = useFetch(apiRoutes.student.balance + "1");
   const { data: benefitData, isLoading: isBenefitLoading } = useFetch("http://localhost:8080/benefit");
   const { handleDelete } = useStudentData();
   const handleShowBenefit = (benefitId: string) => {
     Router.push(`/partner/benefit/${benefitId}/show`);
   };
 
-
-  let coins = 0;
-
-    coinData?.data.map((coin: any) => (
-      coins = coins + coin.amount))
-
-  console.log(coinData?.data);
-
+  console.log(coinData)
 
   return (
     <StudentLayout>
-      <PageHeader title="Benefícios" redirectAction={""} backAction={""} coins={coins}/>
+      <PageHeader title="Benefícios" redirectAction={""} backAction={""} coins={coinData?.data}/>
       <S.Wrapper>
 
       {isLoading

@@ -6,6 +6,7 @@ const apiRoutes = {
     student: {
       base: `http://localhost:8080/student`,
       studentById: `http://localhost:8080/student/`,
+      balance: `http://localhost:8080/student/balance/`, 
     },
     partner: {
       base: `http://localhost:8080/partner`,

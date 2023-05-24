@@ -1,6 +1,6 @@
 package project.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.*;
 import lombok.Data;
@@ -29,5 +29,5 @@ public class Coin {
     private double amount;
 
     @Column(name = "created_at")
-    private Date created_at;
+    private Date created_at = new Date(System.currentTimeMillis());
 }

@@ -17,7 +17,10 @@ export const useStudentData = () => {
   ) => {
     benefitStudent.mutate(
       {
-        data: { id_benefit, id_student },
+        data: { 
+          benefit: {id: id_benefit}, 
+          id_student 
+        },
         method: "POST",
       },
       {

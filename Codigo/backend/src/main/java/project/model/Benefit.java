@@ -2,6 +2,7 @@ package project.model;
 
 import java.io.File;
 import java.nio.Buffer;
+import java.sql.Blob;
 
 import javax.persistence.*;
 import lombok.Data;

@@ -1,10 +1,10 @@
 package project.service;
 
+import java.util.Date;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import project.model.BenefitStudent;
 import project.repository.BenefitStudentRepository;
 
@@ -18,8 +18,8 @@ public class BenefitStudentService {
         return repository.findById(id).get();
     }
 
-    public List<BenefitStudent> getAll(Long id_student) {
-        return repository.findAllByStudent(id_student);
+    public List<BenefitStudent> getAllByIdStudent(Long id_student) {
+        return repository.findAll(id_student);
     }
 
     @Transactional

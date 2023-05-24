@@ -31,8 +31,8 @@ const defaultValues = {
 const RegisterBenefit = () => {
   const { handleAddBenefitStudent } = useStudentData();
   const { handleEdit } = useStudentData();
-  const { data: coinData } = useFetch("http://localhost:8080/coin/byStudent/1");
-  const { query } = useRouter();
+  const { data: coinData } = useFetch(apiRoutes.student.balance + "1");
+  const { query } = useRouter();;
 
 
   const [base64Image, setBase64Image] = useState('');
@@ -52,21 +52,14 @@ const RegisterBenefit = () => {
     }
   );
 
-  function userBalance() {
-    let coins = 0;
-
-    coinData?.data.map((coin: any) => (
-      coins = coins + coin.amount))
-
-    return coins;
-  }
-
   function validate() {
 
-    if (userBalance() < values.price) {
+    if (coinData?.data < values.price) {
       toast.error("Saldo insuficiente.");
       return false;
     }
+    else
+      return true;
   }
 
   const replace = () => {
@@ -75,10 +68,11 @@ const RegisterBenefit = () => {
       toast.error("");
       return false;
     }
-    
+
+    console.log(query.benefitId + " " + query.studentId)
     handleAddBenefitStudent(
-        String(query.benefitId),
-        String(query.studentId)
+      String(query.benefitId),
+      String(1)
     );
   }
 
@@ -116,7 +110,7 @@ const RegisterBenefit = () => {
             base64String={values.image}
           />
           <VSpace height={30} />
-          <Button onClick={replace()}>Comprar</Button>
+          <Button onClick={replace}>Comprar</Button>
           <Button onClick={""}>Cancelar</Button>
         </>
       )}

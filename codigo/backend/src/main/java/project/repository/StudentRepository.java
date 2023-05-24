@@ -9,14 +9,22 @@ import project.model.Student;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
-    @Query(value = " select                   " +
-            "   sum(c.amount) - sum (b.price) " +
-            " from benefit_student bf         " +
-            " inner join benefit b on         " +
-            "   b.id = bf.id_student          " +
-            " inner join coin c on            " +
-            "   c.id_student = bf.id_student  " +
-            " where bf.id_student = :id       ", nativeQuery = true)
-    public Double getBalance(@Param("id") Long id);
+    @Query(value = " select                                                     " +
+            "     (sum(coalesce(c.amount, 0)) - coalesce((                      " +
+            "         select                                                    " +
+            "             sum(coalesce(b.price, 0))                             " +
+            "         from                                                      " +
+            "             student st                                            " +
+            "             left join benefit_student bf on bf.id_student = st.id " +
+            "             inner join benefit b on b.id = bf.id_benefit          " +
+            "         where                                                     " +
+            "             st.id = :id_student                                   " +
+            "     ), 0)) as result                                              " +
+            " from                                                              " +
+            "     student s                                                     " +
+            "     inner join coin c on c.id_student = s.id                      " +
+            " where                                                             " +
+            "     s.id = :id_student                                            ", nativeQuery = true)
+    Double getBalance(@Param("id_student") Long id_student);
 
 }

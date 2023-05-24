@@ -1,6 +1,6 @@
 package project.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.*;
 import lombok.Data;
@@ -19,10 +19,11 @@ public class BenefitStudent {
     @Column(name = "id_student")
     private Long id_student;
 
-    @Column(name = "id_benefit")
-    private Long id_benefit;
+    @ManyToOne
+    @JoinColumn(name = "id_benefit")
+    private Benefit benefit;
 
     @Column(name = "exchange_date")
-    private Date exchange_date;
+    private Date exchange_date = new Date(System.currentTimeMillis());
 
 }

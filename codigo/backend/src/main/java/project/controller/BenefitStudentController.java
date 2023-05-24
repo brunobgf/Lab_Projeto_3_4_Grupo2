@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import project.model.BenefitStudent;
 import project.service.BenefitStudentService;
-import project.service.StudentService;
 
 @RestController
 @RequestMapping("/benefitStudent")
@@ -31,7 +29,7 @@ public class BenefitStudentController {
 
     @GetMapping("/byStudent/{id_student}")
     public ResponseEntity<List<BenefitStudent>> getAll(@PathVariable Long id_student) {
-        return ResponseEntity.ok().body(service.getAll(id_student));
+        return ResponseEntity.ok().body(service.getAllByIdStudent(id_student));
     }
 
     @PostMapping("")

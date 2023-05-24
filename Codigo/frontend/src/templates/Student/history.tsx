@@ -12,6 +12,7 @@ import IconCard from "@/components/Card/IconCard";
 
 const StudentHistory = () => {
   const { data: coinData, isLoading } = useFetch("http://localhost:8080/coin/byStudent/1");
+  const { data: exits} = useFetch("http://localhost:8080/benefitStudent/byStudent/1");
   const { data: professorData, isLoading: isProfessorLoading } = useFetch("http://localhost:8080/professor/1");
   const { handleDelete } = useStudentData();
 
@@ -40,6 +41,19 @@ const StudentHistory = () => {
               children={""}
               title={coin.id}
               name={"+ " + coin.amount + " moedas" + ". Motivo:  " + coin.motivation}
+              onGiveCoins={""}
+              onDelete={""}
+              onEdit={""}
+
+            />
+          ))}
+
+          {exits?.data.map((e: any) => (
+            <Card
+              key={e.id}
+              children={""}
+              title={e.id}
+              name={"- " + e.benefit.price + " moedas" + ". Trocada(s) por:  " + e.benefit.name}
               onGiveCoins={""}
               onDelete={""}
               onEdit={""}

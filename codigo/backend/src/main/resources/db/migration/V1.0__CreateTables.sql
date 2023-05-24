@@ -5,7 +5,7 @@ CREATE TABLE student (
     rg VARCHAR(15) NOT NULL,
     institute VARCHAR(30) NOT NULL,
     course VARCHAR(30) NOT NULL,
-    email VARCHAR(15) NOT NULL,
+    email VARCHAR(50) NOT NULL,
     login VARCHAR(20) NOT NULL unique,
     password VARCHAR(20) NOT NULL
 );
@@ -16,7 +16,7 @@ CREATE TABLE professor (
     cpf VARCHAR(15) NOT NULL,
     departament VARCHAR(30) NOT NULL,
     institution VARCHAR(30) NOT NULL,
-    coinBalance INT NOT NULL,
+    coin_balance INT NOT NULL,
     login VARCHAR(20) NOT NULL unique,
     password VARCHAR(20) NOT NULL
 );
@@ -25,7 +25,7 @@ CREATE TABLE partner (
     id INT auto_increment PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     cnpj VARCHAR(15) NOT NULL,
-    email VARCHAR(15) NOT NULL,
+    email VARCHAR(50) NOT NULL,
     login VARCHAR(20) NOT NULL unique,
     password VARCHAR(20) NOT NULL
 );
@@ -47,7 +47,17 @@ CREATE TABLE benefit (
     id_partner INT, 
     price INT NOT NULL,
     description VARCHAR(100) NOT NULL,
-    image TEXT,
+    image blob,
     name varchar(100),
     CONSTRAINT FK_for_partner_id FOREIGN KEY (id_partner) REFERENCES partner(id)   
+);
+
+CREATE TABLE benefit_student (
+    id INT auto_increment PRIMARY KEY,
+    id_benefit INT, 
+    id_student INT,
+    exchange_date date,
+
+    CONSTRAINT FK_for_benefit_id FOREIGN KEY (id_benefit) REFERENCES benefit(id) ,
+    CONSTRAINT FK_for_student_id FOREIGN KEY (id_student) REFERENCES student(id) 
 );
