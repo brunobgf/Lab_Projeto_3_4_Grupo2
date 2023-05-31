@@ -25,6 +25,14 @@ const apiRoutes = {
     },
     benefitStudent: {
       base: `http://localhost:8080/benefitStudent`
+    },
+    studentPdf: {
+      base: `http://localhost:8080/pdf`,
+      pdfByStudent: `http://localhost:8080/pdf/student`,
+    },
+    professorPdf: {
+      base: `http://localhost:8080/pdf`,
+      pdfByProfessor: `http://localhost:8080/pdf/professor`,
     }
   };
   

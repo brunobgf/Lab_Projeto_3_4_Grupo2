@@ -26,7 +26,7 @@ const StudentHistory = () => {
 
   return (
     <StudentLayout>
-      <PageHeader title="Extrato" redirectAction={""} backAction={""} coins={balance?.data}/>
+      <PageHeader title="Extrato" redirectAction={""} backAction={""} onGeneratePdf={""} coins={balance?.data}/>
       <S.Wrapper>
 
       {coinData?.data.map((coin: any) => (
