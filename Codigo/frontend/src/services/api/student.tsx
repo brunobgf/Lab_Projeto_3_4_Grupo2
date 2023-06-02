@@ -6,6 +6,7 @@ import apiRoutes from "../routes";
 export const useStudentData = () => {
   const studentMutation = useMultimethodMutation(apiRoutes.student.base);
   const benefitStudent = useMultimethodMutation(apiRoutes.benefitStudent.base);
+  const extract = useMultimethodMutation(apiRoutes.extract.base);
   const studentByIdMutation = useMultimethodMutation(
     apiRoutes.student.studentById,
     apiRoutes.student.base
@@ -63,6 +64,26 @@ export const useStudentData = () => {
     );
   };
 
+  const handleExtract = (studentId: string) => {
+    extract.mutate(
+      {
+        data: {
+          id: studentId,
+          student: "true" 
+        },
+        method: "POST",
+      },
+      {
+        onSuccess: ({ data }) => {
+          toast.success("Extrato salvo com sucesso.");
+        },
+        onError: (err: any) => {
+          toast.error("Erro ao gravar extrato.");
+        },
+      }
+    );
+  };
+
   const handleEdit = (
     studentId: string,
     name:string,
@@ -109,5 +130,5 @@ export const useStudentData = () => {
 
   const handleRead = () => {};
 
-  return { handleAdd, handleEdit, handleDelete, handleRead, handleAddBenefitStudent };
+  return { handleAdd, handleEdit, handleDelete, handleRead, handleAddBenefitStudent, handleExtract };
 };

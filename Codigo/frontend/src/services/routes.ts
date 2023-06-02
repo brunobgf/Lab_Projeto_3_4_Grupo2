@@ -25,6 +25,9 @@ const apiRoutes = {
     },
     benefitStudent: {
       base: `http://localhost:8080/benefitStudent`
+    },
+    extract: {
+      base: `http://localhost:8080/pdf`
     }
   };
   

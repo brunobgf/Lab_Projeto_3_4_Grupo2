@@ -6,6 +6,7 @@ import apiRoutes from "../routes";
 export const useProfessorData = () => {
   const professorMutation = useMultimethodMutation(apiRoutes.professor.base);
   const coinMutation = useMultimethodMutation(apiRoutes.coin.base);
+  const extract = useMultimethodMutation(apiRoutes.extract.base);
   const professorByIdMutation = useMultimethodMutation(
     apiRoutes.professor.professorById,
     apiRoutes.professor.base
@@ -36,6 +37,26 @@ export const useProfessorData = () => {
 
   }
 
+  const handleExtract = (professorId: string) => {
+    extract.mutate(
+      {
+        data: {
+          id: professorId,
+          student: "false" 
+        },
+        method: "POST",
+      },
+      {
+        onSuccess: ({ data }) => {
+          toast.success("Extrato salvo com sucesso.");
+        },
+        onError: (err: any) => {
+          toast.error("Erro ao gravar extrato.");
+        },
+      }
+    );
+  };
+
   const handleDeleteProfessor = (professorId: string) => {
     professorByIdMutation.mutate(
       { method: "DELETE", additionalQuery: professorId },
@@ -52,5 +73,5 @@ export const useProfessorData = () => {
 
   const handleReadProfessor = () => { };
 
-  return {handleDeleteProfessor, handleReadProfessor, handleAddCoin};
+  return {handleDeleteProfessor, handleReadProfessor, handleAddCoin, handleExtract};
 };
