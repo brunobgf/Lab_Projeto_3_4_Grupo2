@@ -33,7 +33,7 @@ const ProfessorHistory = () => {
 
   return (
     <ProfessorLayout>
-      <PageHeader title="Extrato" redirectAction={""} backAction={""} coins={hasCoins() ? professorData?.data.coinBalance: "0"}/>
+      <PageHeader title="Extrato" redirectAction={""} backAction={""} onGeneratePdf={""} coins={hasCoins() ? professorData?.data.coinBalance: "0"}/>
       <S.Wrapper>
       {coinData?.data.map((coin: any) => (
             <Card
