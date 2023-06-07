@@ -1,6 +1,8 @@
 package project.controller;
 
+import java.io.File;
 import java.io.FileOutputStream;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -45,7 +47,7 @@ public class PdfController {
     private ProfessorService professor;
 
     private final String PATH_IMG = "C:/Users/Daniela Martins/Desktop/PUC/LAPS/03/Lab_Projeto_3_4_Grupo2/codigo/images/logo.png";
-    private final String PATH_FILE = "C:/Users/Daniela Martins/Desktop/extrato.pdf";
+    private final String PATH_FILE = "C:/Users/Daniela Martins/Desktop";
     private final float WIDTH_PAGE = 200;
     private final float HEIGHT_PAGE = 842;
     private final float WIDTH_IMG = 100;
@@ -101,12 +103,17 @@ public class PdfController {
         }
     }
 
-    private Paragraph mountParagraphExtractCoins(List<Coin> coins) {
+    private Paragraph mountParagraphExtractCoins(List<Coin> coins, Boolean isStudent) {
 
         String extract = "";
 
         for (var coin : coins) {
-            extract = extract + "\n+ " + coin.getAmount() + " $  " + coin.getCreated_at();
+            if (isStudent)
+                extract = extract + "\n+ ";
+            else
+                extract = extract + "\n- ";
+
+            extract = extract + coin.getAmount() + " $  " + coin.getCreated_at();
         }
 
         return mountParagraph(extract, Paragraph.ALIGN_LEFT, 8);
@@ -143,19 +150,48 @@ public class PdfController {
         String user = "\nUsuário: " + nameUser +
                 "\nSaldo: " + balance + " moeda(s)\n";
 
+        LocalTime time = LocalTime.now();
+
+        double numero = time.getHour() + (time.getMinute() / 60.0);
+        numero = Math.round(numero * 1000.0) / 1000.0;
+
         try {
-            PdfWriter.getInstance(document, new FileOutputStream(PATH_FILE));
+            PdfWriter.getInstance(document,
+                    new FileOutputStream(PATH_FILE + "/" + nameSequential("extrato", PATH_FILE)));
 
             document.open();
             document.add(mountImage(document.getPageSize().getWidth()));
             document.add(mountParagraph("Extrato de movimentação de moedas", Paragraph.ALIGN_CENTER, 10));
             document.add(mountParagraph(user, Paragraph.ALIGN_CENTER, 10));
-            document.add(mountParagraphExtractCoins(coins));
+            document.add(mountParagraphExtractCoins(coins, isStudent));
             document.add(mountParagraphExtractExits(exits));
             document.close();
         } catch (Exception error) {
             System.out.println(error);
         }
+    }
+
+    public static String nameSequential(String prefix, String path) {
+
+        File[] file = new File(path).listFiles();
+        int sequence = 1;
+        int num = 0;
+        String name = "";
+
+        if (file != null) {
+            for (File f : file) {
+                if (f.isFile() && f.getName().startsWith(prefix)) {
+                    name = f.getName();
+                    num = Integer.parseInt(name.substring(prefix.length() + 1, name.lastIndexOf(".pdf")));
+
+                    if (num >= sequence) {
+                        sequence = num + 1;
+                    }
+                }
+            }
+        }
+
+        return prefix + "_" + String.format("%02d", sequence) + ".pdf";
     }
 
 }
